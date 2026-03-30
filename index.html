@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dantas | Fotografia & Tour Virtual</title>
+<title>FotoLab | Fotografia & Tour Virtual</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0d0d0d;
     --surface: #161616;
     --surface2: #1e1e1e;
-    --gold: #c9a96e;
-    --gold-light: #e8cfa0;
+    --gold: #e8321a;
+    --gold-light: #ff5c45;
     --white: #f4f0eb;
     --muted: #7a7570;
-    --border: rgba(201,169,110,0.15);
+    --border: rgba(232,50,26,0.2);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -200,14 +200,14 @@
   }
   .service-card::before {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(201,169,110,0.05) 0%, transparent 60%);
+    background: linear-gradient(135deg, rgba(232,50,26,0.06) 0%, transparent 60%);
     opacity: 0; transition: opacity 0.4s;
   }
   .service-card:hover { border-color: var(--border); }
   .service-card:hover::before { opacity: 1; }
   .service-num {
     font-family: 'Fraunces', serif; font-size: 3.5rem; font-weight: 300;
-    color: rgba(201,169,110,0.12); line-height: 1; margin-bottom: 24px;
+    color: rgba(232,50,26,0.1); line-height: 1; margin-bottom: 24px;
   }
   .service-icon { margin-bottom: 20px; }
   .service-icon svg { width: 28px; height: 28px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
@@ -302,7 +302,7 @@
     content: ''; width: 16px; height: 1px; background: var(--gold); flex-shrink: 0;
   }
   .plan-features li strong { color: var(--white); font-weight: 400; }
-  .plan-target { font-size: 0.75rem; color: rgba(201,169,110,0.6); margin-top: 4px; font-style: italic; }
+  .plan-target { font-size: 0.75rem; color: rgba(232,50,26,0.55); margin-top: 4px; font-style: italic; }
 
   /* ── DIFERENCIAIS ── */
   .diff-section {
@@ -414,8 +414,8 @@
 <!-- NAV -->
 <nav>
   <div class="logo">
-    <img src="logotipo.png" alt="Dantas Fotografia" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-    <span class="logo-fallback">Dantas <span>Fotografia</span></span>
+    <img src="logotipo.png" alt="FotoLab" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span class="logo-fallback">FotoLab</span>
   </div>
   <ul>
     <li><a href="#servicos">Serviços</a></li>
@@ -714,7 +714,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Dantas Fotografia</div>
+  <div class="footer-logo">FotoLab</div>
   <div class="footer-text">© 2026 · Fotografia de Arquitetura & Tour Virtual · Rio de Janeiro, RJ</div>
   <div class="footer-links">
     <a href="#">Instagram</a>
