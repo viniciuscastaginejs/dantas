@@ -15,7 +15,50 @@
     --white: #f4f0eb;
     --muted: #7a7570;
     --border: rgba(232,50,26,0.2);
+    --nav-bg: rgba(13,13,13,0.95);
+    --input-bg: #161616;
   }
+
+  body.light-mode {
+    --bg: #f5f3f0;
+    --surface: #ebe8e4;
+    --surface2: #dedad5;
+    --white: #1a1814;
+    --muted: #6b6560;
+    --border: rgba(232,50,26,0.25);
+    --nav-bg: rgba(245,243,240,0.97);
+    --input-bg: #ebe8e4;
+  }
+
+  /* ── THEME TOGGLE ── */
+  .theme-toggle {
+    width: 48px; height: 26px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+    flex-shrink: 0;
+    margin-right: 16px;
+    outline: none;
+  }
+  .theme-toggle::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--gold);
+    transition: transform 0.3s ease;
+  }
+  body.light-mode .theme-toggle::after {
+    transform: translateX(22px);
+  }
+  .theme-icon-moon { position: absolute; top: 50%; left: 6px; transform: translateY(-50%); font-size: 11px; pointer-events: none; transition: opacity 0.3s; opacity: 1; }
+  .theme-icon-sun  { position: absolute; top: 50%; right: 5px; transform: translateY(-50%); font-size: 11px; pointer-events: none; transition: opacity 0.3s; opacity: 0; }
+  body.light-mode .theme-icon-moon { opacity: 0; }
+  body.light-mode .theme-icon-sun  { opacity: 1; }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -27,6 +70,7 @@
     font-family: 'DM Sans', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
+    transition: background 0.4s ease, color 0.4s ease;
   }
 
   /* ── NAV ── */
@@ -34,8 +78,10 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 24px 48px;
-    background: linear-gradient(to bottom, rgba(13,13,13,0.95), transparent);
-    backdrop-filter: blur(2px);
+    background: var(--nav-bg);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.4s ease;
   }
   .logo {
     font-family: 'Fraunces', serif;
@@ -245,7 +291,7 @@
   .port-item:hover .port-item-overlay { opacity: 1; }
   .port-label {
     font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold-light);
+    color: #ffffff;
   }
   /* Gradient placeholders for portfolio */
   .port-item:nth-child(1) { background: linear-gradient(160deg, #1a1814 0%, #2c2518 60%, #181410 100%); }
@@ -353,10 +399,10 @@
   .field { display: flex; flex-direction: column; gap: 8px; }
   label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
   input, select, textarea {
-    background: var(--surface); border: 1px solid var(--border);
+    background: var(--input-bg); border: 1px solid var(--border);
     color: var(--white); padding: 14px 16px;
     font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 300;
-    outline: none; transition: border-color 0.3s;
+    outline: none; transition: border-color 0.3s, background 0.4s, color 0.4s;
   }
   input:focus, select:focus, textarea:focus { border-color: var(--gold); }
   textarea { resize: none; height: 120px; }
@@ -423,7 +469,13 @@
     <li><a href="#planos">Planos</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
-  <button class="nav-cta" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Solicitar Orçamento</button>
+  <div style="display:flex; align-items:center; gap:0;">
+    <button class="theme-toggle" onclick="toggleTheme()" title="Alternar modo claro/escuro" aria-label="Alternar tema">
+      <span class="theme-icon-moon">🌙</span>
+      <span class="theme-icon-sun">☀️</span>
+    </button>
+    <button class="nav-cta" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Solicitar Orçamento</button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -440,19 +492,19 @@
   <div class="hero-right">
     <div class="hero-grid">
       <div class="hero-img" data-label="Arquitetura">
-        <img src="exemplo1.jpeg" alt="Fotografia de Arquitetura" onerror="this.style.display='none'">
+        <img src="exemplo1.jpg" alt="Fotografia de Arquitetura" onerror="this.style.display='none'">
         <div class="photo-placeholder">
           <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
       </div>
       <div class="hero-img" data-label="Interior">
-        <img src="exemplo2.jpeg" alt="Fotografia de Interior" onerror="this.style.display='none'">
+        <img src="exemplo2.jpg" alt="Fotografia de Interior" onerror="this.style.display='none'">
         <div class="photo-placeholder">
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
         </div>
       </div>
       <div class="hero-img" data-label="Tour Virtual">
-        <img src="exemplo3.jpeg" alt="Tour Virtual" onerror="this.style.display='none'">
+        <img src="exemplo3.jpg" alt="Tour Virtual" onerror="this.style.display='none'">
         <div class="photo-placeholder">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
         </div>
@@ -510,27 +562,27 @@
   <h2>Espaços que <em>transformamos</em></h2>
   <div class="portfolio-grid">
     <div class="port-item">
-      <img src="exemplo4.jpeg" alt="Imóvel Alto Padrão" onerror="this.style.display='none'">
+      <img src="exemplo4.jpg" alt="Imóvel Alto Padrão" onerror="this.style.display='none'">
       <div class="port-inner"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
       <div class="port-item-overlay"><span class="port-label">Imóvel Alto Padrão</span></div>
     </div>
     <div class="port-item">
-      <img src="exemplo5.jpeg" alt="Clínica Médica" onerror="this.style.display='none'">
+      <img src="exemplo5.jpg" alt="Clínica Médica" onerror="this.style.display='none'">
       <div class="port-inner"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
       <div class="port-item-overlay"><span class="port-label">Clínica Médica</span></div>
     </div>
     <div class="port-item">
-      <img src="exemplo6.jpeg" alt="Escritório Corporativo" onerror="this.style.display='none'">
+      <img src="exemplo6.jpg" alt="Escritório Corporativo" onerror="this.style.display='none'">
       <div class="port-inner"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5"/></svg></div>
       <div class="port-item-overlay"><span class="port-label">Escritório Corporativo</span></div>
     </div>
     <div class="port-item">
-      <img src="exemplo7.jpeg" alt="Hotel & Resort" onerror="this.style.display='none'">
+      <img src="exemplo7.jpg" alt="Hotel & Resort" onerror="this.style.display='none'">
       <div class="port-inner"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div>
       <div class="port-item-overlay"><span class="port-label">Hotel & Resort</span></div>
     </div>
     <div class="port-item">
-      <img src="exemplo8.jpeg" alt="Casa de Festas" onerror="this.style.display='none'">
+      <img src="exemplo8.jpg" alt="Casa de Festas" onerror="this.style.display='none'">
       <div class="port-inner"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4"/></svg></div>
       <div class="port-item-overlay"><span class="port-label">Casa de Festas</span></div>
     </div>
@@ -723,9 +775,34 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('button[type="submit"]');
-  btn.textContent = 'Mensagem enviada!';
-  btn.style.backg
+<script>
+  // ── DARK / LIGHT MODE ──
+  function toggleTheme() {
+    const isLight = document.body.classList.toggle('light-mode');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  }
+  // Aplica o tema salvo ao carregar
+  (function() {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') document.body.classList.add('light-mode');
+  })();
+
+  // ── FORM SUBMIT ──
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const original = btn.textContent;
+    btn.textContent = 'Mensagem enviada! ✓';
+    btn.style.background = '#2d6a4f';
+    btn.style.color = '#fff';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 3000);
+  }
+</script></body>
+</html>
