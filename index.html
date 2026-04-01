@@ -450,7 +450,7 @@
   <!-- Tours Virtuais — menores na esquerda, maior na direita -->
   <div class="tours-row reveal">
     <a class="tour-item" href="https://fotolabestudio.net/clientes/ferradurah/tour/" target="_blank" rel="noopener">
-      <img src="tour1.png" alt="Ferradura Resort" onerror="this.style.display='none'">
+      <img src="tour1.jpeg" alt="Ferradura Resort" onerror="this.style.display='none'">
       <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
       <div class="tour-overlay">
@@ -459,7 +459,7 @@
       </div>
     </a>
     <a class="tour-item" href="https://kuula.co/share/collection/7DjsQ?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" target="_blank" rel="noopener">
-      <img src="tour2.png" alt="Espaço Paradisus" onerror="this.style.display='none'">
+      <img src="tour2.jpeg" alt="Espaço Paradisus" onerror="this.style.display='none'">
       <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
       <div class="tour-overlay">
@@ -468,7 +468,7 @@
       </div>
     </a>
     <a class="tour-item" href="http://fotolabestudio.net/360/amc/" target="_blank" rel="noopener">
-      <img src="tour3.png" alt="Américas Medical City" onerror="this.style.display='none'">
+      <img src="tour3.jpeg" alt="Américas Medical City" onerror="this.style.display='none'">
       <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
       <div class="tour-overlay">
@@ -478,7 +478,7 @@
     </a>
     <!-- Maior na direita -->
     <a class="tour-item" href="https://kuula.co/share/collection/79JFN?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" target="_blank" rel="noopener">
-      <img src="tour4.png" alt="São Luiz Star" onerror="this.style.display='none'">
+      <img src="tour4.jpeg" alt="São Luiz Star" onerror="this.style.display='none'">
       <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
       <div class="tour-overlay">
@@ -697,7 +697,7 @@
         <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
         <div>
           <div class="contact-label">E-mail</div>
-          <div class="contact-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d5b1b4bba1b4a695b8b4a7b6baa6b1b4bba1b4a6fbbbb0a1">[email&#160;protected]</a></div>
+          <div class="contact-value">dantas@marcosdantas.net</div>
         </div>
       </div>
     </div>
@@ -737,7 +737,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // PARALLAX SUTIL NO HERO
   window.addEventListener('scroll', () => {
     const grid = document.getElementById('heroGrid');
@@ -746,4 +746,45 @@
     if (sy < window.innerHeight * 1.2) {
       grid.style.transform = 'translateY(' + (sy * 0.13) + 'px)';
     }
-  }, { passive: tru
+  }, { passive: true });
+
+  // FORM SUBMIT — envia via WhatsApp
+  function handleSubmit(e) {
+    e.preventDefault();
+    const f = e.target;
+    const nome    = f.querySelector('input[placeholder="Seu nome"]').value.trim();
+    const empresa = f.querySelector('input[placeholder="Nome do negócio"]').value.trim();
+    const whats   = f.querySelector('input[type="tel"]').value.trim();
+    const plano   = f.querySelector('select').value.trim();
+    const negocio = f.querySelector('input[placeholder*="hotel"]').value.trim();
+    const msg     = f.querySelector('textarea').value.trim();
+
+    const texto = [
+      '🏢 *Novo contato via site FotoLab*',
+      '',
+      `👤 *Nome:* ${nome || '—'}`,
+      `🏬 *Empresa:* ${empresa || '—'}`,
+      `📱 *WhatsApp:* ${whats || '—'}`,
+      `📦 *Plano:* ${plano || '—'}`,
+      `🔑 *Tipo de negócio:* ${negocio || '—'}`,
+      `💬 *Mensagem:* ${msg || '—'}`,
+    ].join('\n');
+
+    const numero = '5521987431010';
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(texto)}`, '_blank');
+
+    const btn = f.querySelector('button[type="submit"]');
+    const orig = btn.textContent;
+    btn.textContent = 'Abrindo WhatsApp... ✓';
+    btn.style.background = '#2d6a4f';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.style.background = '';
+      btn.disabled = false;
+      f.reset();
+    }, 3000);
+  }
+</script>
+</body>
+</html>
