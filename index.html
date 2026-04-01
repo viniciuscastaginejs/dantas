@@ -122,30 +122,46 @@
   .tour-item {
     position: relative; overflow: hidden; cursor: pointer;
     background: var(--surface2);
+    text-decoration: none; display: block;
   }
-  /* maior fica na direita */
-  .tour-item:nth-child(4) { }
-  .tour-item iframe {
+  .tour-item img {
     position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    border: none; pointer-events: none;
-    transition: pointer-events 0.3s;
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
   }
-  .tour-item:hover iframe { pointer-events: auto; }
+  .tour-item:hover img { transform: scale(1.05); }
   .tour-overlay {
-    position: absolute; inset: 0; z-index: 3;
-    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
-    display: flex; align-items: flex-end; padding: 16px;
-    transition: opacity 0.4s;
+    position: absolute; inset: 0; z-index: 2;
+    background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+    transition: background 0.3s;
   }
-  .tour-item:hover .tour-overlay { opacity: 0; }
-  .tour-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff; }
-  .tour-badge {
-    position: absolute; top: 12px; right: 12px; z-index: 4;
+  .tour-item:hover .tour-overlay { background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); }
+  .tour-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: #ffffff; margin-bottom: 10px; }
+  .tour-btn {
+    display: inline-flex; align-items: center; gap: 8px;
     background: var(--red); color: #fff;
-    font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase;
-    padding: 4px 10px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.65rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 7px 14px; border: none;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.3s, transform 0.3s;
+    width: fit-content;
   }
+  .tour-btn svg { width: 12px; height: 12px; fill: none; stroke: #fff; stroke-width: 2; }
+  .tour-item:hover .tour-btn { opacity: 1; transform: translateY(0); }
+  .tour-badge {
+    position: absolute; top: 12px; left: 12px; z-index: 3;
+    background: rgba(0,0,0,0.55); color: #fff;
+    font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 4px 10px; backdrop-filter: blur(4px);
+  }
+  /* placeholder quando não tem foto */
+  .tour-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tour-placeholder svg { width: 40px; height: 40px; fill: none; stroke: rgba(255,255,255,0.2); stroke-width: 1; }
 
   /* ── PLANOS ── */
   .plans-section { padding: 100px 48px; }
@@ -424,27 +440,43 @@
 
   <!-- Tours Virtuais — menores na esquerda, maior na direita -->
   <div class="tours-row reveal">
-    <div class="tour-item">
-      <iframe src="https://fotolabestudio.net/clientes/ferradurah/tour/" title="Ferradura Resort" allowfullscreen></iframe>
-      <div class="tour-overlay"><span class="tour-label">Ferradura Resort</span></div>
+    <a class="tour-item" href="https://fotolabestudio.net/clientes/ferradurah/tour/" target="_blank" rel="noopener">
+      <img src="tour1.jpeg" alt="Ferradura Resort" onerror="this.style.display='none'">
+      <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
-    </div>
-    <div class="tour-item">
-      <iframe src="https://kuula.co/share/collection/7DjsQ?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" title="Espaço Paradisus" allowfullscreen></iframe>
-      <div class="tour-overlay"><span class="tour-label">Espaço Paradisus</span></div>
+      <div class="tour-overlay">
+        <span class="tour-label">Ferradura Resort</span>
+        <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
+      </div>
+    </a>
+    <a class="tour-item" href="https://kuula.co/share/collection/7DjsQ?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" target="_blank" rel="noopener">
+      <img src="tour2.jpeg" alt="Espaço Paradisus" onerror="this.style.display='none'">
+      <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
-    </div>
-    <div class="tour-item">
-      <iframe src="http://fotolabestudio.net/360/amc/" title="Américas Medical City" allowfullscreen></iframe>
-      <div class="tour-overlay"><span class="tour-label">Américas Medical City</span></div>
+      <div class="tour-overlay">
+        <span class="tour-label">Espaço Paradisus</span>
+        <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
+      </div>
+    </a>
+    <a class="tour-item" href="http://fotolabestudio.net/360/amc/" target="_blank" rel="noopener">
+      <img src="tour3.jpeg" alt="Américas Medical City" onerror="this.style.display='none'">
+      <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
-    </div>
+      <div class="tour-overlay">
+        <span class="tour-label">Américas Medical City</span>
+        <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
+      </div>
+    </a>
     <!-- Maior na direita -->
-    <div class="tour-item">
-      <iframe src="https://kuula.co/share/collection/79JFN?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" title="São Luiz Star" allowfullscreen></iframe>
-      <div class="tour-overlay"><span class="tour-label">São Luiz Star</span></div>
+    <a class="tour-item" href="https://kuula.co/share/collection/79JFN?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" target="_blank" rel="noopener">
+      <img src="tour4.jpeg" alt="São Luiz Star" onerror="this.style.display='none'">
+      <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
-    </div>
+      <div class="tour-overlay">
+        <span class="tour-label">São Luiz Star</span>
+        <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -697,17 +729,28 @@
 </footer>
 
 <script>
-  // SCROLL REVEAL
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.reveal, .tcard').forEach(el => observer.observe(el));
+  // SCROLL REVEAL — funciona em file:// e https://
+  function initReveal() {
+    const els = document.querySelectorAll('.reveal, .tcard');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(el => el.classList.add('visible'));
+      return;
+    }
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
+    els.forEach(el => obs.observe(el));
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initReveal);
+  } else {
+    initReveal();
+  }
 
   // PARALLAX SUTIL NO HERO
   window.addEventListener('scroll', () => {
@@ -725,15 +768,4 @@
     const btn = e.target.querySelector('button[type="submit"]');
     const orig = btn.textContent;
     btn.textContent = 'Mensagem enviada! ✓';
-    btn.style.background = '#2d6a4f';
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = orig;
-      btn.style.background = '';
-      btn.disabled = false;
-      e.target.reset();
-    }, 3000);
-  }
-</script>
-</body>
-</html>
+    btn.sty
