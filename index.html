@@ -17,7 +17,8 @@
     --border: rgba(232,50,26,0.18);
     --nav-bg: rgba(255,255,255,0.97);
     --card-bg: #ffffff;
-    --shadow: 0 4px 32px rgba(26,24,20,0.07);
+    --shadow: 0 2px 16px rgba(26,24,20,0.08), 0 1px 4px rgba(26,24,20,0.05);
+    --shadow-hover: 0 8px 40px rgba(26,24,20,0.13), 0 2px 8px rgba(26,24,20,0.07);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,7 +32,8 @@
     padding: 16px 48px;
     background: var(--nav-bg);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(26,24,20,0.08);
+    box-shadow: 0 2px 16px rgba(26,24,20,0.06);
   }
   .logo-img { height: 60px; width: auto; object-fit: contain; background: #fff; }
   .logo-fallback { font-family: 'Fraunces', serif; font-weight: 300; font-size: 1.6rem; letter-spacing: 0.12em; color: var(--red); text-transform: uppercase; display: none; }
@@ -82,9 +84,9 @@
 
   /* ── SERVICES ── */
   .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .service-card { background: var(--card-bg); padding: 48px 36px; border: 1px solid rgba(26,24,20,0.07); transition: all 0.4s; position: relative; overflow: hidden; box-shadow: var(--shadow); }
+  .service-card { background: var(--card-bg); padding: 48px 36px; border: 1px solid rgba(26,24,20,0.09); transition: all 0.4s; position: relative; overflow: hidden; box-shadow: var(--shadow); border-color: rgba(26,24,20,0.09); }
   .service-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(232,50,26,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s; }
-  .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,24,20,0.12); }
+  .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: rgba(232,50,26,0.2); }
   .service-card:hover::before { opacity: 1; }
   .service-num { font-family: 'Fraunces', serif; font-size: 3.5rem; font-weight: 300; color: rgba(232,50,26,0.08); line-height: 1; margin-bottom: 24px; }
   .service-icon { margin-bottom: 20px; }
@@ -166,7 +168,7 @@
   /* ── PLANOS ── */
   .plans-section { padding: 100px 48px; }
   .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 64px; align-items: end; }
-  .plan-card { background: var(--card-bg); padding: 48px 36px; position: relative; border: 1px solid rgba(26,24,20,0.08); transition: all 0.4s; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+  .plan-card { background: var(--card-bg); padding: 48px 36px; position: relative; border: 1px solid rgba(26,24,20,0.1); transition: all 0.4s; box-shadow: var(--shadow); display: flex; flex-direction: column; }
   .plan-card.featured { background: var(--dark); border-color: var(--dark); }
   .plan-card.featured .plan-name,
   .plan-card.featured .plan-title { color: rgba(244,240,235,0.85); }
@@ -177,7 +179,7 @@
   .plan-card.featured .plan-features li::before { background: var(--red-light); }
   .plan-card.featured .plan-price { border-color: rgba(244,240,235,0.12); }
   .plan-card.featured .plan-target { color: rgba(232,100,80,0.85); }
-  .plan-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(26,24,20,0.12); }
+  .plan-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
   .plan-badge { position: absolute; top: -1px; left: 36px; background: var(--red); color: #fff; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 5px 14px; font-weight: 500; }
   .plan-name { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
   .plan-title { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 300; margin-bottom: 8px; color: var(--dark); }
@@ -201,7 +203,7 @@
   .diff-visual { position: relative; height: 500px; }
   .diff-img-main { position: absolute; inset: 0; background: linear-gradient(135deg, #d4cec8, #c8bfb4 60%, #d0c8c0); display: flex; align-items: center; justify-content: center; }
   .diff-img-main svg { width: 64px; height: 64px; fill: var(--red); opacity: 0.08; }
-  .diff-badge { position: absolute; bottom: -20px; right: -20px; background: var(--bg); border: 1px solid var(--border); padding: 20px 28px; text-align: center; box-shadow: var(--shadow); }
+  .diff-badge { position: absolute; bottom: -20px; right: -20px; background: var(--bg); border: 1px solid var(--border); padding: 20px 28px; text-align: center; box-shadow: var(--shadow); border-color: rgba(26,24,20,0.09); }
   .diff-badge-num { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 300; color: var(--red); display: block; }
   .diff-badge-text { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
 
@@ -234,10 +236,10 @@
   .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 56px; }
 
   .tcard {
-    background: var(--card-bg); border: 1px solid var(--border); padding: 36px 32px;
+    background: var(--card-bg); border: 1px solid rgba(26,24,20,0.1); padding: 36px 32px;
     box-shadow: var(--shadow);
   }
-  .tcard:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(26,24,20,0.13); }
+  .tcard:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
   .tcard:nth-child(1) { animation-delay: 0.05s; }
   .tcard:nth-child(2) { animation-delay: 0.15s; }
   .tcard:nth-child(3) { animation-delay: 0.25s; }
@@ -384,7 +386,7 @@
 <div class="divider"></div>
 
 <!-- SERVIÇOS -->
-<section class="section" id="servicos">
+<section class="section" id="servicos" style="background:#fafafa;">
   <div class="section-label reveal">O que oferecemos</div>
   <h2 class="reveal reveal-delay-1">Valorize a presença digital<br>da sua <em>empresa.</em></h2>
   <p class="section-sub reveal reveal-delay-2">Criamos uma experiência virtual do seu espaço que pode ser explorada diretamente no Google e no seu site.</p>
@@ -499,7 +501,7 @@
 </section>
 
 <!-- PLANOS -->
-<section class="plans-section" id="planos">
+<section class="plans-section" id="planos" style="background:#fafafa;">
   <div class="section-label reveal">Investimento</div>
   <h2 class="reveal reveal-delay-1">Planos que cabem<br>no seu <em>orçamento</em></h2>
   <p class="section-sub reveal reveal-delay-2">Combos completos com fotografia profissional + tour virtual. Escolha o que melhor se encaixa no seu negócio.</p>
@@ -689,7 +691,7 @@
 </section>
 
 <!-- CONTATO -->
-<section class="contact-section" id="contato">
+<section class="contact-section" id="contato" style="background:#fafafa;">
   <div class="contact-info">
     <div class="section-label reveal">Fale conosco</div>
     <h2 class="reveal reveal-delay-1">Vamos valorizar<br><em>o seu espaço</em></h2>
