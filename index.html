@@ -114,7 +114,7 @@
   /* ── TOUR VIRTUAL ROW ── */
   .tours-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
     grid-template-rows: 260px;
     gap: 3px;
     margin-top: 3px;
@@ -317,8 +317,8 @@
     .section, .plans-section, .portfolio-section, .testimonials-section, .contact-section { padding: 64px 24px; }
     .services-grid, .plans-grid { grid-template-columns: 1fr; }
     .testimonials-grid { grid-template-columns: 1fr; }
-    .tours-row { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px; }
-    .tour-item:nth-child(4) { grid-column: 1 / 3; }
+    .tours-row { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; }
+    .tour-item:nth-child(5) { grid-column: 1 / 3; }
     .diff-section { grid-template-columns: 1fr; padding: 64px 24px; }
     .diff-visual { height: 280px; }
     .diff-badge { right: 0; bottom: 0; }
@@ -344,7 +344,7 @@
     <li><a href="#planos">Planos</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
-  <button class="nav-cta" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Solicitar Orçamento</button>
+  <button class="nav-cta" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})">Contratar</button>
 </nav>
 
 <!-- HERO -->
@@ -447,7 +447,7 @@
     </div>
   </div>
 
-  <!-- Tours Virtuais — menores na esquerda, maior na direita -->
+  <!-- Tours Virtuais — 4 menores na esquerda, maior na direita -->
   <div class="tours-row reveal">
     <a class="tour-item" href="https://fotolabestudio.net/clientes/ferradurah/tour/" target="_blank" rel="noopener">
       <img src="tour1.png" alt="Ferradura Resort" onerror="this.style.display='none'">
@@ -476,9 +476,18 @@
         <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
       </div>
     </a>
+    <a class="tour-item" href="https://kuula.co/share/collection/7q3wN?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" target="_blank" rel="noopener">
+      <img src="tour4.png" alt="SEND Decorado" onerror="this.style.display='none'">
+      <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+      <span class="tour-badge">Tour 360°</span>
+      <div class="tour-overlay">
+        <span class="tour-label">SEND Decorado</span>
+        <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
+      </div>
+    </a>
     <!-- Maior na direita -->
     <a class="tour-item" href="https://kuula.co/share/collection/79JFN?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" target="_blank" rel="noopener">
-      <img src="tour4.png" alt="São Luiz Star" onerror="this.style.display='none'">
+      <img src="tour5.png" alt="São Luiz Star" onerror="this.style.display='none'">
       <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
       <div class="tour-overlay">
@@ -690,14 +699,7 @@
         <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
         <div>
           <div class="contact-label">WhatsApp</div>
-          <div class="contact-value">(21) 98743-1010</div>
-        </div>
-      </div>
-      <div class="contact-item reveal reveal-delay-2">
-        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-        <div>
-          <div class="contact-label">E-mail</div>
-          <div class="contact-value">dantas@marcosdantas.net</div>
+          <a href="https://wa.me/5521987431010" target="_blank" rel="noopener" class="contact-value" style="color:var(--red);text-decoration:none;">(21) 98743-1010</a>
         </div>
       </div>
     </div>
@@ -713,27 +715,28 @@
         <label>Plano de interesse</label>
         <select>
           <option value="">Selecione...</option>
-          <option>Plano Essencial — 12× R$275</option>
-          <option>Plano Pro — 12× R$575</option>
-          <option>Plano Premium — 12× R$890</option>
-          <option>Ainda não sei, quero conversar</option>
+          <option>Plano Essencial</option>
+          <option>Plano Pro</option>
+          <option>Plano Premium</option>
+          <option>Somente Fotos</option>
+          <option>Somente Tour Virtual</option>
+          <option>Outros</option>
         </select>
       </div>
     </div>
     <div class="field"><label>Tipo de negócio</label><input type="text" placeholder="Ex: Clínica odontológica, hotel, escritório..."></div>
     <div class="field"><label>Mensagem (opcional)</label><textarea placeholder="Conte um pouco mais sobre o seu espaço..."></textarea></div>
-    <button type="submit" class="btn-primary" style="width:100%; padding:18px">Enviar Solicitação</button>
+    <button type="submit" class="btn-primary" style="width:100%; padding:18px">Enviar</button>
   </form>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">FotoLab</div>
-  <div class="footer-text">© 2026 · Fotografia de Ambientes & Tour Virtual · Rio de Janeiro, RJ</div>
+  <div class="footer-logo">FotoLab Fotografia</div>
+  <div class="footer-text">© 2026 · FotoLab · Fotografia de Ambientes & Tour Virtual · Rio de Janeiro · RJ · BR</div>
   <div class="footer-links">
-    <a href="#">Instagram</a>
-    <a href="#">Portfólio</a>
-    <a href="#contato">Contato</a>
+    <a href="https://www.instagram.com/fotolab_br/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://wa.me/5521987431010" target="_blank" rel="noopener">WhatsApp</a>
   </div>
 </footer>
 
