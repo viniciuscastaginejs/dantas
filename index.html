@@ -7,382 +7,237 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d0d0d;
-    --surface: #161616;
-    --surface2: #1e1e1e;
-    --gold: #e8321a;
-    --gold-light: #ff5c45;
-    --white: #f4f0eb;
+    --bg: #ffffff;
+    --surface: #f5f3f0;
+    --surface2: #ece9e4;
+    --red: #e8321a;
+    --red-light: #ff5c45;
+    --dark: #1a1814;
     --muted: #7a7570;
-    --border: rgba(232,50,26,0.2);
-    --nav-bg: rgba(13,13,13,0.95);
-    --input-bg: #161616;
+    --border: rgba(232,50,26,0.18);
+    --nav-bg: rgba(255,255,255,0.97);
+    --card-bg: #ffffff;
+    --shadow: 0 4px 32px rgba(26,24,20,0.07);
   }
-
-  body.light-mode {
-    --bg: #f5f3f0;
-    --surface: #ebe8e4;
-    --surface2: #dedad5;
-    --white: #1a1814;
-    --muted: #6b6560;
-    --border: rgba(232,50,26,0.25);
-    --nav-bg: rgba(245,243,240,0.97);
-    --input-bg: #ebe8e4;
-  }
-
-  /* ── THEME TOGGLE ── */
-  .theme-toggle {
-    width: 48px; height: 26px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 13px;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.3s;
-    flex-shrink: 0;
-    margin-right: 16px;
-    outline: none;
-  }
-  .theme-toggle::after {
-    content: '';
-    position: absolute;
-    top: 3px; left: 3px;
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    background: var(--gold);
-    transition: transform 0.3s ease;
-  }
-  body.light-mode .theme-toggle::after {
-    transform: translateX(22px);
-  }
-  .theme-icon-moon { position: absolute; top: 50%; left: 6px; transform: translateY(-50%); font-size: 11px; pointer-events: none; transition: opacity 0.3s; opacity: 1; }
-  .theme-icon-sun  { position: absolute; top: 50%; right: 5px; transform: translateY(-50%); font-size: 11px; pointer-events: none; transition: opacity 0.3s; opacity: 0; }
-  body.light-mode .theme-icon-moon { opacity: 0; }
-  body.light-mode .theme-icon-sun  { opacity: 1; }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-    transition: background 0.4s ease, color 0.4s ease;
-  }
+  body { background: var(--bg); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
 
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 24px 48px;
+    padding: 16px 48px;
     background: var(--nav-bg);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    transition: background 0.4s ease;
   }
-  .logo {
-    font-family: 'Fraunces', serif;
-    font-weight: 300;
-    font-size: 1.4rem;
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    text-transform: uppercase;
-  }
-  .logo-img { height: 40px; width: auto; object-fit: contain; }
-  .logo-fallback { font-family: 'Fraunces', serif; font-weight: 300; font-size: 1.4rem; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; display: none; }
-  .logo-fallback span { font-style: italic; color: var(--white); }
+  .logo-img { height: 60px; width: auto; object-fit: contain; background: #fff; }
+  .logo-fallback { font-family: 'Fraunces', serif; font-weight: 300; font-size: 1.6rem; letter-spacing: 0.12em; color: var(--red); text-transform: uppercase; display: none; }
   nav ul { list-style: none; display: flex; gap: 36px; }
-  nav ul a {
-    color: var(--muted); font-size: 0.78rem; text-decoration: none;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    transition: color 0.3s;
-  }
-  nav ul a:hover { color: var(--gold); }
-  .nav-cta {
-    background: transparent; border: 1px solid var(--gold);
-    color: var(--gold); padding: 10px 24px; font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
-    cursor: pointer; transition: all 0.3s;
-  }
-  .nav-cta:hover { background: var(--gold); color: var(--bg); }
+  nav ul a { color: var(--muted); font-size: 0.78rem; text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+  nav ul a:hover { color: var(--red); }
+  .nav-cta { background: transparent; border: 1px solid var(--red); color: var(--red); padding: 10px 24px; font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+  .nav-cta:hover { background: var(--red); color: #fff; }
 
   /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-left {
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 120px 64px 80px;
-    position: relative; z-index: 2;
-  }
-  .hero-tag {
-    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 28px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .hero-tag::before {
-    content: ''; width: 32px; height: 1px; background: var(--gold);
-  }
-  h1 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2.8rem, 5vw, 4.2rem);
-    font-weight: 300;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-    margin-bottom: 28px;
-  }
-  h1 em { font-style: italic; color: var(--gold); }
-  .hero-sub {
-    font-size: 1rem; color: var(--muted); line-height: 1.7;
-    max-width: 400px; margin-bottom: 48px;
-  }
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 120px 64px 80px; position: relative; z-index: 2; }
+  .hero-tag { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
+  .hero-tag::before { content: ''; width: 32px; height: 1px; background: var(--red); }
+  h1 { font-family: 'Fraunces', serif; font-size: clamp(2.4rem, 4.5vw, 3.8rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 28px; color: var(--dark); }
+  h1 em { font-style: italic; color: var(--red); }
+  .hero-sub { font-size: 1rem; color: var(--muted); line-height: 1.7; max-width: 400px; margin-bottom: 48px; }
   .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--gold); color: var(--bg);
-    padding: 16px 36px; border: none; cursor: pointer;
-    font-family: 'DM Sans', sans-serif; font-size: 0.8rem;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    transition: all 0.3s; font-weight: 500;
-  }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-  .btn-outline {
-    background: transparent; color: var(--white);
-    padding: 16px 36px; border: 1px solid rgba(244,240,235,0.2);
-    cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.8rem;
-    letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s;
-  }
-  .btn-outline:hover { border-color: var(--white); }
+  .btn-primary { background: var(--red); color: #fff; padding: 16px 36px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s; font-weight: 500; }
+  .btn-primary:hover { background: var(--red-light); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--dark); padding: 16px 36px; border: 1px solid rgba(26,24,20,0.25); cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s; }
+  .btn-outline:hover { border-color: var(--dark); }
 
-  .hero-right {
-    position: relative; overflow: hidden; min-height: 100vh;
-  }
-  .hero-grid {
-    position: absolute; inset: 0;
-    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
-    gap: 3px;
-  }
-  .hero-img {
-    background: var(--surface2);
-    overflow: hidden; position: relative;
-  }
-  .hero-img::after {
-    content: attr(data-label);
-    position: absolute; bottom: 12px; left: 12px;
-    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: rgba(244,240,235,0.5);
-    background: rgba(0,0,0,0.4); padding: 4px 8px;
-  }
-  /* Fake photos with gradient placeholders */
-  .hero-img:nth-child(1) { background: linear-gradient(135deg, #1a1612 0%, #2a2218 50%, #1e1a14 100%); grid-column: 1; grid-row: 1 / 3; }
-  .hero-img:nth-child(2) { background: linear-gradient(135deg, #131518 0%, #1c2028 100%); }
-  .hero-img:nth-child(3) { background: linear-gradient(135deg, #16130e 0%, #231d14 100%); }
-
-  .hero-img img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%; object-fit: cover; z-index: 1;
-  }
-  .port-item img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%; object-fit: cover; z-index: 1;
-  }
-  .port-item-overlay { z-index: 2; }
-
-  .photo-placeholder {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0.15;
-  }
-  .photo-placeholder svg { width: 48px; height: 48px; fill: var(--gold); }
-
-  .hero-stat-bar {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    display: flex; gap: 40px; justify-content: center;
-    background: rgba(13,13,13,0.88);
-    backdrop-filter: blur(12px);
-    border-top: 1px solid var(--border);
-    padding: 20px 32px; z-index: 3;
-  }
+  .hero-right { position: relative; overflow: hidden; min-height: 100vh; }
+  .hero-grid { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 3px; }
+  .hero-img { background: var(--surface2); overflow: hidden; position: relative; }
+  .hero-img::after { content: attr(data-label); position: absolute; bottom: 12px; left: 12px; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.3); padding: 4px 8px; z-index: 2; }
+  .hero-img:nth-child(1) { background: linear-gradient(135deg, #d4cfc8, #c8c0b4); grid-column: 1; grid-row: 1 / 3; }
+  .hero-img:nth-child(2) { background: linear-gradient(135deg, #cdd0d4, #bcc0c8); }
+  .hero-img:nth-child(3) { background: linear-gradient(135deg, #d0cbc4, #c4bdb4); }
+  .hero-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+  .photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; opacity: 0.18; }
+  .photo-placeholder svg { width: 48px; height: 48px; fill: var(--red); }
+  .hero-stat-bar { position: absolute; bottom: 0; left: 0; right: 0; display: flex; gap: 40px; justify-content: center; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-top: 1px solid var(--border); padding: 20px 32px; z-index: 3; }
   .stat { text-align: center; }
-  .stat-num {
-    font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 300;
-    color: var(--gold); display: block;
-  }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 300; color: var(--red); display: block; }
   .stat-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
 
-  /* ── DIVIDER ── */
-  .divider {
-    height: 1px; background: var(--border); margin: 0 48px;
-  }
+  .divider { height: 1px; background: var(--border); margin: 0 48px; }
 
-  /* ── SERVICES ── */
+  /* ── SECTIONS ── */
   .section { padding: 100px 48px; }
-  .section-label {
-    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 16px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .section-label::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
-  h2 {
-    font-family: 'Fraunces', serif; font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 300; line-height: 1.15; margin-bottom: 16px;
-  }
-  h2 em { font-style: italic; color: var(--gold); }
+  .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .section-label::before { content: ''; width: 32px; height: 1px; background: var(--red); }
+  h2 { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; line-height: 1.2; margin-bottom: 16px; color: var(--dark); }
+  h2 em { font-style: italic; color: var(--red); }
   .section-sub { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 520px; margin-bottom: 64px; }
 
-  .services-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-  }
-  .service-card {
-    background: var(--surface); padding: 48px 36px;
-    border: 1px solid transparent;
-    transition: all 0.4s; position: relative; overflow: hidden;
-  }
-  .service-card::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(232,50,26,0.06) 0%, transparent 60%);
-    opacity: 0; transition: opacity 0.4s;
-  }
-  .service-card:hover { border-color: var(--border); }
+  /* ── SERVICES ── */
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .service-card { background: var(--card-bg); padding: 48px 36px; border: 1px solid rgba(26,24,20,0.07); transition: all 0.4s; position: relative; overflow: hidden; box-shadow: var(--shadow); }
+  .service-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(232,50,26,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s; }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,24,20,0.12); }
   .service-card:hover::before { opacity: 1; }
-  .service-num {
-    font-family: 'Fraunces', serif; font-size: 3.5rem; font-weight: 300;
-    color: rgba(232,50,26,0.1); line-height: 1; margin-bottom: 24px;
-  }
+  .service-num { font-family: 'Fraunces', serif; font-size: 3.5rem; font-weight: 300; color: rgba(232,50,26,0.08); line-height: 1; margin-bottom: 24px; }
   .service-icon { margin-bottom: 20px; }
-  .service-icon svg { width: 28px; height: 28px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
-  .service-title {
-    font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 300;
-    margin-bottom: 14px; letter-spacing: -0.01em;
-  }
+  .service-icon svg { width: 28px; height: 28px; stroke: var(--red); fill: none; stroke-width: 1.5; }
+  .service-title { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 300; margin-bottom: 14px; color: var(--dark); }
   .service-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.7; }
-  .service-link {
-    display: inline-flex; align-items: center; gap: 8px; margin-top: 24px;
-    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--gold); text-decoration: none; transition: gap 0.3s;
-  }
+  .service-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); text-decoration: none; transition: gap 0.3s; }
   .service-link:hover { gap: 14px; }
 
   /* ── PORTFOLIO ── */
   .portfolio-section { padding: 100px 48px; background: var(--surface); }
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 280px 280px;
-    gap: 3px; margin-top: 48px;
-  }
-  .port-item {
-    background: var(--surface2); position: relative; overflow: hidden;
-    cursor: pointer;
-  }
+  .portfolio-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 280px 280px; gap: 3px; margin-top: 48px; }
+  .port-item { background: var(--surface2); position: relative; overflow: hidden; cursor: pointer; }
   .port-item:nth-child(1) { grid-row: 1 / 3; }
-  .port-item-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
-    opacity: 0; transition: opacity 0.4s;
-    display: flex; align-items: flex-end; padding: 24px;
-  }
+  .port-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+  .port-item-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 50%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 24px; }
   .port-item:hover .port-item-overlay { opacity: 1; }
-  .port-label {
-    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: #ffffff;
+  .port-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff; }
+  .port-item:nth-child(1) { background: linear-gradient(160deg, #d4cec8, #c8c0b0); }
+  .port-item:nth-child(2) { background: linear-gradient(135deg, #cdd0d8, #bcc4cc); }
+  .port-item:nth-child(3) { background: linear-gradient(135deg, #d0cbc4, #c4bcb4); }
+  .port-item:nth-child(4) { background: linear-gradient(135deg, #c8ccd4, #b8c0cc); }
+  .port-item:nth-child(5) { background: linear-gradient(135deg, #ccc8c0, #c0b8b0); }
+  .port-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; opacity: 0.15; }
+  .port-inner svg { width: 40px; height: 40px; fill: var(--red); }
+
+  /* ── TOUR VIRTUAL ROW ── */
+  .tours-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+    grid-template-rows: 260px;
+    gap: 3px;
+    margin-top: 3px;
   }
-  /* Gradient placeholders for portfolio */
-  .port-item:nth-child(1) { background: linear-gradient(160deg, #1a1814 0%, #2c2518 60%, #181410 100%); }
-  .port-item:nth-child(2) { background: linear-gradient(135deg, #131820 0%, #1a2230 100%); }
-  .port-item:nth-child(3) { background: linear-gradient(135deg, #1a1410 0%, #251c14 100%); }
-  .port-item:nth-child(4) { background: linear-gradient(135deg, #0e1218 0%, #181e28 100%); }
-  .port-item:nth-child(5) { background: linear-gradient(135deg, #181210 0%, #221a12 100%); }
-  
-  .port-inner {
+  .tour-item {
+    position: relative; overflow: hidden; cursor: pointer;
+    background: var(--surface2);
+  }
+  /* maior fica na direita */
+  .tour-item:nth-child(4) { }
+  .tour-item iframe {
+    position: absolute; inset: 0;
     width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center; opacity: 0.1;
+    border: none; pointer-events: none;
+    transition: pointer-events 0.3s;
   }
-  .port-inner svg { width: 40px; height: 40px; fill: var(--gold); }
+  .tour-item:hover iframe { pointer-events: auto; }
+  .tour-overlay {
+    position: absolute; inset: 0; z-index: 3;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+    display: flex; align-items: flex-end; padding: 16px;
+    transition: opacity 0.4s;
+  }
+  .tour-item:hover .tour-overlay { opacity: 0; }
+  .tour-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff; }
+  .tour-badge {
+    position: absolute; top: 12px; right: 12px; z-index: 4;
+    background: var(--red); color: #fff;
+    font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 4px 10px;
+  }
 
   /* ── PLANOS ── */
   .plans-section { padding: 100px 48px; }
-  .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 64px; }
-  .plan-card {
-    background: var(--surface); padding: 48px 36px;
-    position: relative; border: 1px solid transparent;
-    transition: all 0.4s;
-  }
-  .plan-card.featured {
-    background: var(--surface2); border-color: var(--border);
-  }
-  .plan-badge {
-    position: absolute; top: -1px; left: 36px;
-    background: var(--gold); color: var(--bg);
-    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-    padding: 5px 14px; font-weight: 500;
-  }
-  .plan-name {
-    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 20px;
-  }
-  .plan-title {
-    font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 300;
-    margin-bottom: 8px;
-  }
-  .plan-price {
-    margin: 28px 0 32px;
-    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    padding: 20px 0;
-  }
-  .plan-price-main {
-    font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 300; color: var(--gold);
-  }
+  .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 64px; align-items: end; }
+  .plan-card { background: var(--card-bg); padding: 48px 36px; position: relative; border: 1px solid rgba(26,24,20,0.08); transition: all 0.4s; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+  .plan-card.featured { background: var(--dark); border-color: var(--dark); }
+  .plan-card.featured .plan-name,
+  .plan-card.featured .plan-title { color: rgba(244,240,235,0.85); }
+  .plan-card.featured .plan-price-main { color: var(--red-light); }
+  .plan-card.featured .plan-price-period { color: rgba(244,240,235,0.5); }
+  .plan-card.featured .plan-features li { color: rgba(244,240,235,0.6); }
+  .plan-card.featured .plan-features li strong { color: #f4f0eb; }
+  .plan-card.featured .plan-features li::before { background: var(--red-light); }
+  .plan-card.featured .plan-price { border-color: rgba(244,240,235,0.12); }
+  .plan-card.featured .plan-target { color: rgba(232,100,80,0.85); }
+  .plan-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(26,24,20,0.12); }
+  .plan-badge { position: absolute; top: -1px; left: 36px; background: var(--red); color: #fff; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 5px 14px; font-weight: 500; }
+  .plan-name { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .plan-title { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 300; margin-bottom: 8px; color: var(--dark); }
+  .plan-price { margin: 28px 0 32px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 0; }
+  .plan-price-main { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 300; color: var(--red); }
   .plan-price-period { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
-  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
-  .plan-features li {
-    font-size: 0.85rem; color: var(--muted); display: flex; align-items: center; gap: 10px;
-  }
-  .plan-features li::before {
-    content: ''; width: 16px; height: 1px; background: var(--gold); flex-shrink: 0;
-  }
-  .plan-features li strong { color: var(--white); font-weight: 400; }
-  .plan-target { font-size: 0.75rem; color: rgba(232,50,26,0.55); margin-top: 4px; font-style: italic; }
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; flex: 1; }
+  .plan-features li { font-size: 0.85rem; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+  .plan-features li::before { content: ''; width: 16px; height: 1px; background: var(--red); flex-shrink: 0; }
+  .plan-features li strong { color: var(--dark); font-weight: 400; }
+  .plan-target { font-size: 0.85rem; color: rgba(232,50,26,0.7); font-style: italic; margin-bottom: 28px; }
+  .plan-btn-wrap { margin-top: auto; }
 
   /* ── DIFERENCIAIS ── */
-  .diff-section {
-    padding: 100px 48px;
-    background: var(--surface);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  }
+  .diff-section { padding: 100px 48px; background: var(--surface); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .diff-list { display: flex; flex-direction: column; gap: 32px; }
   .diff-item { display: flex; gap: 24px; align-items: flex-start; }
-  .diff-num {
-    font-family: 'Fraunces', serif; font-size: 0.9rem; color: var(--gold);
-    font-style: italic; flex-shrink: 0; margin-top: 4px;
-  }
-  .diff-title { font-size: 1rem; font-weight: 400; margin-bottom: 6px; }
+  .diff-num { font-family: 'Fraunces', serif; font-size: 0.9rem; color: var(--red); font-style: italic; flex-shrink: 0; margin-top: 4px; }
+  .diff-title { font-size: 1rem; font-weight: 400; margin-bottom: 6px; color: var(--dark); }
   .diff-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
-
-  .diff-visual {
-    position: relative; height: 500px;
-  }
-  .diff-img-main {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, #1a1612 0%, #2d2518 60%, #1a1410 100%);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .diff-img-main svg { width: 64px; height: 64px; fill: var(--gold); opacity: 0.08; }
-  .diff-badge {
-    position: absolute; bottom: -20px; right: -20px;
-    background: var(--bg); border: 1px solid var(--border);
-    padding: 20px 28px; text-align: center;
-  }
-  .diff-badge-num {
-    font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 300; color: var(--gold); display: block;
-  }
+  .diff-visual { position: relative; height: 500px; }
+  .diff-img-main { position: absolute; inset: 0; background: linear-gradient(135deg, #d4cec8, #c8bfb4 60%, #d0c8c0); display: flex; align-items: center; justify-content: center; }
+  .diff-img-main svg { width: 64px; height: 64px; fill: var(--red); opacity: 0.08; }
+  .diff-badge { position: absolute; bottom: -20px; right: -20px; background: var(--bg); border: 1px solid var(--border); padding: 20px 28px; text-align: center; box-shadow: var(--shadow); }
+  .diff-badge-num { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 300; color: var(--red); display: block; }
   .diff-badge-text { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+
+  /* ── DEPOIMENTOS ── */
+  .testimonials-section {
+    padding: 100px 48px;
+    background: var(--bg);
+    position: relative; overflow: hidden;
+  }
+  .testimonials-section::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 0;
+    background-image: repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(232,50,26,0.03) 60px, rgba(232,50,26,0.03) 61px);
+    animation: bgDiag 24s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes bgDiag { from { background-position: 0 0; } to { background-position: 120px 120px; } }
+  .testimonials-section::after {
+    content: '';
+    position: absolute; z-index: 0;
+    width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,50,26,0.06) 0%, transparent 65%);
+    top: -200px; right: -200px;
+    animation: orbeFloat 9s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes orbeFloat { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(50px) scale(1.06); } }
+  .testimonials-section > * { position: relative; z-index: 1; }
+
+  .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 56px; }
+
+  .tcard {
+    background: var(--card-bg); border: 1px solid var(--border); padding: 36px 32px;
+    box-shadow: var(--shadow);
+    opacity: 0; transform: translateY(48px);
+    transition: opacity 0.65s ease, transform 0.65s ease, box-shadow 0.4s ease;
+  }
+  .tcard.visible { opacity: 1; transform: translateY(0); }
+  .tcard:hover { transform: translateY(-6px) !important; box-shadow: 0 20px 60px rgba(26,24,20,0.13); }
+  .tcard:nth-child(1) { transition-delay: 0.05s; }
+  .tcard:nth-child(2) { transition-delay: 0.15s; }
+  .tcard:nth-child(3) { transition-delay: 0.25s; }
+  .tcard:nth-child(4) { transition-delay: 0.35s; }
+  .tcard-quote { font-family: 'Fraunces', serif; font-size: 3.5rem; line-height: 0.8; color: var(--red); opacity: 0.2; margin-bottom: 12px; user-select: none; }
+  .tcard-text { font-size: 0.91rem; line-height: 1.78; color: var(--muted); font-style: italic; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+  .tcard-author { display: flex; align-items: center; gap: 14px; }
+  .tcard-avatar { width: 48px; height: 48px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--border); background: var(--surface2); }
+  .tcard-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .tcard-avatar-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--red); background: rgba(232,50,26,0.08); }
+  .tcard-name { font-size: 0.88rem; font-weight: 500; color: var(--dark); }
+  .tcard-role { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); margin-top: 2px; text-transform: uppercase; }
+  .tcard-stars { color: var(--red); font-size: 0.72rem; margin-top: 3px; letter-spacing: 2px; }
 
   /* ── CONTATO ── */
   .contact-section { padding: 100px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
@@ -390,46 +245,36 @@
   .contact-detail { display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
   .contact-item { display: flex; gap: 16px; align-items: flex-start; }
   .contact-icon { width: 36px; height: 36px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .contact-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+  .contact-icon svg { width: 16px; height: 16px; stroke: var(--red); fill: none; stroke-width: 1.5; }
   .contact-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
-  .contact-value { font-size: 0.9rem; color: var(--white); margin-top: 2px; }
-
+  .contact-value { font-size: 0.9rem; color: var(--dark); margin-top: 2px; }
   form { display: flex; flex-direction: column; gap: 20px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .field { display: flex; flex-direction: column; gap: 8px; }
   label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
-  input, select, textarea {
-    background: var(--input-bg); border: 1px solid var(--border);
-    color: var(--white); padding: 14px 16px;
-    font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 300;
-    outline: none; transition: border-color 0.3s, background 0.4s, color 0.4s;
-  }
-  input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+  input, select, textarea { background: var(--card-bg); border: 1px solid rgba(26,24,20,0.15); color: var(--dark); padding: 14px 16px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 300; outline: none; transition: border-color 0.3s; }
+  input:focus, select:focus, textarea:focus { border-color: var(--red); }
   textarea { resize: none; height: 120px; }
-  select option { background: var(--surface); }
+  select option { background: var(--card-bg); }
 
   /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 48px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: var(--surface);
-  }
-  .footer-logo { font-family: 'Fraunces', serif; font-weight: 300; font-size: 1.1rem; color: var(--gold); letter-spacing: 0.1em; }
+  footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; background: var(--surface); }
+  .footer-logo { font-family: 'Fraunces', serif; font-weight: 300; font-size: 1.1rem; color: var(--red); letter-spacing: 0.1em; }
   .footer-text { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; }
   .footer-links { display: flex; gap: 24px; }
   .footer-links a { color: var(--muted); font-size: 0.72rem; text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s; }
-  .footer-links a:hover { color: var(--gold); }
+  .footer-links a:hover { color: var(--red); }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .hero-left > * {
-    animation: fadeUp 0.8s ease forwards;
-    opacity: 0;
-  }
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── HERO ENTRY ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-left > * { animation: fadeUp 0.8s ease forwards; opacity: 0; }
   .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
   .hero-left > *:nth-child(2) { animation-delay: 0.25s; }
   .hero-left > *:nth-child(3) { animation-delay: 0.4s; }
@@ -437,16 +282,21 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    nav { padding: 20px 24px; }
+    nav { padding: 14px 24px; }
     nav ul { display: none; }
+    .logo-img { height: 48px; }
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 100px 24px 48px; }
-    .hero-right { height: 320px; }
-    .hero-stat-bar { left: 0; bottom: 0; right: 0; justify-content: center; }
-    .section, .plans-section, .portfolio-section, .contact-section { padding: 64px 24px; }
+    .hero-right { height: 320px; min-height: unset; }
+    .hero-stat-bar { gap: 20px; }
+    .section, .plans-section, .portfolio-section, .testimonials-section, .contact-section { padding: 64px 24px; }
     .services-grid, .plans-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .tours-row { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px; }
+    .tour-item:nth-child(4) { grid-column: 1 / 3; }
     .diff-section { grid-template-columns: 1fr; padding: 64px 24px; }
     .diff-visual { height: 280px; }
+    .diff-badge { right: 0; bottom: 0; }
     .contact-section { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
     .portfolio-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
@@ -459,7 +309,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">
+  <div>
     <img src="logotipo.png" alt="FotoLab" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
     <span class="logo-fallback">FotoLab</span>
   </div>
@@ -469,51 +319,39 @@
     <li><a href="#planos">Planos</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
-  <div style="display:flex; align-items:center; gap:0;">
-    <button class="theme-toggle" onclick="toggleTheme()" title="Alternar modo claro/escuro" aria-label="Alternar tema">
-      <span class="theme-icon-moon">🌙</span>
-      <span class="theme-icon-sun">☀️</span>
-    </button>
-    <button class="nav-cta" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Solicitar Orçamento</button>
-  </div>
+  <button class="nav-cta" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Solicitar Orçamento</button>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-tag">Fotografia Arquitetural & Tour Virtual</div>
-    <h1>Seu espaço,<br><em>valorizado</em><br>ao máximo.</h1>
-    <p class="hero-sub">Fotografias profissionais e tours virtuais imersivos para empresas, clínicas, hotéis, imóveis e espaços que merecem ser vistos.</p>
+    <div class="hero-tag">Fotografia & Tour Virtual</div>
+    <h1>Valorize a presença digital<br>do seu <em>espaço.</em></h1>
+    <p class="hero-sub">Fotografia profissional de ambientes e Tour Virtual para empresas.</p>
     <div class="hero-btns">
       <button class="btn-primary" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})">Ver Planos</button>
       <button class="btn-outline" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">Ver Portfólio</button>
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-grid">
+    <div class="hero-grid" id="heroGrid">
       <div class="hero-img" data-label="Arquitetura">
-        <img src="exemplo1.jpeg" alt="Fotografia de Arquitetura" onerror="this.style.display='none'">
-        <div class="photo-placeholder">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
+        <img src="exemplo1.jpg" alt="Fotografia de Arquitetura" onerror="this.style.display='none'">
+        <div class="photo-placeholder"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
       </div>
       <div class="hero-img" data-label="Interior">
-        <img src="exemplo2.jpeg" alt="Fotografia de Interior" onerror="this.style.display='none'">
-        <div class="photo-placeholder">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
+        <img src="exemplo2.jpg" alt="Fotografia de Interior" onerror="this.style.display='none'">
+        <div class="photo-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
       </div>
       <div class="hero-img" data-label="Tour Virtual">
-        <img src="exemplo3.jpeg" alt="Tour Virtual" onerror="this.style.display='none'">
-        <div class="photo-placeholder">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
-        </div>
+        <img src="exemplo3.jpg" alt="Tour Virtual" onerror="this.style.display='none'">
+        <div class="photo-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       </div>
     </div>
     <div class="hero-stat-bar">
-      <div class="stat"><span class="stat-num">200+</span><span class="stat-label">Projetos</span></div>
+      <div class="stat"><span class="stat-num">1000+</span><span class="stat-label">Projetos</span></div>
       <div class="stat"><span class="stat-num">5★</span><span class="stat-label">Avaliação</span></div>
-      <div class="stat"><span class="stat-num">12+</span><span class="stat-label">Anos</span></div>
+      <div class="stat"><span class="stat-num">18+</span><span class="stat-label">Anos de mercado</span></div>
     </div>
   </div>
 </section>
@@ -522,35 +360,29 @@
 
 <!-- SERVIÇOS -->
 <section class="section" id="servicos">
-  <div class="section-label">O que oferecemos</div>
-  <h2>Soluções visuais para<br><em>cada tipo de negócio</em></h2>
-  <p class="section-sub">Atendemos consultórios, escritórios, hotéis, restaurantes, imóveis, clínicas e muito mais — com entrega profissional e edição de alto nível.</p>
+  <div class="section-label reveal">O que oferecemos</div>
+  <h2 class="reveal reveal-delay-1">Valorize a presença digital<br>da sua <em>empresa.</em></h2>
+  <p class="section-sub reveal reveal-delay-2">Criamos uma experiência virtual do seu espaço que pode ser explorada diretamente no Google e no seu site.</p>
   <div class="services-grid">
-    <div class="service-card">
+    <div class="service-card reveal reveal-delay-1">
       <div class="service-num">01</div>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
-      </div>
-      <div class="service-title">Fotografia Profissional</div>
-      <p class="service-desc">Imagens de alto impacto do seu espaço, com iluminação, composição e edição que valorizam cada detalhe do ambiente.</p>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+      <div class="service-title">Fotografia Profissional de Ambientes</div>
+      <p class="service-desc">Imagens de alto impacto, que dialogam com o projeto do seu espaço, mostrando o clima em cada ambiente e destacando detalhes.</p>
       <a class="service-link" href="#planos">Ver planos →</a>
     </div>
-    <div class="service-card">
+    <div class="service-card reveal reveal-delay-2">
       <div class="service-num">02</div>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
-      </div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <div class="service-title">Tour Virtual 360°</div>
-      <p class="service-desc">Experiência imersiva que permite seus clientes visitarem virtualmente o espaço antes mesmo de chegar presencialmente.</p>
+      <p class="service-desc">Experiência imersiva que oferece a seus clientes a possibilidade de conhecer melhor e explorar seu espaço antes mesmo da visita presencial.</p>
       <a class="service-link" href="#planos">Ver planos →</a>
     </div>
-    <div class="service-card">
+    <div class="service-card reveal reveal-delay-3">
       <div class="service-num">03</div>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-      </div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
       <div class="service-title">Google Street View</div>
-      <p class="service-desc">Integração do tour virtual diretamente no Google Maps, aumentando a visibilidade e a confiança de quem pesquisa seu negócio.</p>
+      <p class="service-desc">Hoje a primeira decisão do cliente acontece antes mesmo de sair de casa. A integração do tour virtual diretamente no Google Maps aumenta a visibilidade e a confiança de quem pesquisa seu negócio.</p>
       <a class="service-link" href="#planos">Ver planos →</a>
     </div>
   </div>
@@ -558,47 +390,74 @@
 
 <!-- PORTFÓLIO -->
 <section class="portfolio-section" id="portfolio">
-  <div class="section-label">Nosso trabalho</div>
-  <h2>Espaços que <em>transformamos</em></h2>
+  <div class="section-label reveal">Nosso trabalho</div>
+  <h2 class="reveal reveal-delay-1">Espaços que <em>valorizamos</em></h2>
+
+  <!-- Fotos -->
   <div class="portfolio-grid">
-    <div class="port-item">
-      <img src="exemplo4.jpeg" alt="Imóvel Alto Padrão" onerror="this.style.display='none'">
+    <div class="port-item reveal reveal-delay-1">
+      <img src="exemplo4.jpg" alt="Imóvel Alto Padrão" onerror="this.style.display='none'">
       <div class="port-inner"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
       <div class="port-item-overlay"><span class="port-label">Imóvel Alto Padrão</span></div>
     </div>
-    <div class="port-item">
-      <img src="exemplo5.jpeg" alt="Clínica Médica" onerror="this.style.display='none'">
+    <div class="port-item reveal reveal-delay-2">
+      <img src="exemplo5.jpg" alt="Clínica Médica" onerror="this.style.display='none'">
       <div class="port-inner"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
       <div class="port-item-overlay"><span class="port-label">Clínica Médica</span></div>
     </div>
-    <div class="port-item">
-      <img src="exemplo6.jpeg" alt="Escritório Corporativo" onerror="this.style.display='none'">
+    <div class="port-item reveal reveal-delay-3">
+      <img src="exemplo6.jpg" alt="Escritório Corporativo" onerror="this.style.display='none'">
       <div class="port-inner"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5"/></svg></div>
       <div class="port-item-overlay"><span class="port-label">Escritório Corporativo</span></div>
     </div>
-    <div class="port-item">
-      <img src="exemplo7.jpeg" alt="Hotel & Resort" onerror="this.style.display='none'">
+    <div class="port-item reveal reveal-delay-2">
+      <img src="exemplo7.jpg" alt="Hotel & Resort" onerror="this.style.display='none'">
       <div class="port-inner"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div>
       <div class="port-item-overlay"><span class="port-label">Hotel & Resort</span></div>
     </div>
-    <div class="port-item">
-      <img src="exemplo8.jpeg" alt="Casa de Festas" onerror="this.style.display='none'">
+    <div class="port-item reveal reveal-delay-3">
+      <img src="exemplo8.jpg" alt="Casa de Festas" onerror="this.style.display='none'">
       <div class="port-inner"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4"/></svg></div>
       <div class="port-item-overlay"><span class="port-label">Casa de Festas</span></div>
+    </div>
+  </div>
+
+  <!-- Tours Virtuais — menores na esquerda, maior na direita -->
+  <div class="tours-row reveal">
+    <div class="tour-item">
+      <iframe src="https://fotolabestudio.net/clientes/ferradurah/tour/" title="Ferradura Resort" allowfullscreen></iframe>
+      <div class="tour-overlay"><span class="tour-label">Ferradura Resort</span></div>
+      <span class="tour-badge">Tour 360°</span>
+    </div>
+    <div class="tour-item">
+      <iframe src="https://kuula.co/share/collection/7DjsQ?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" title="Espaço Paradisus" allowfullscreen></iframe>
+      <div class="tour-overlay"><span class="tour-label">Espaço Paradisus</span></div>
+      <span class="tour-badge">Tour 360°</span>
+    </div>
+    <div class="tour-item">
+      <iframe src="http://fotolabestudio.net/360/amc/" title="Américas Medical City" allowfullscreen></iframe>
+      <div class="tour-overlay"><span class="tour-label">Américas Medical City</span></div>
+      <span class="tour-badge">Tour 360°</span>
+    </div>
+    <!-- Maior na direita -->
+    <div class="tour-item">
+      <iframe src="https://kuula.co/share/collection/79JFN?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" title="São Luiz Star" allowfullscreen></iframe>
+      <div class="tour-overlay"><span class="tour-label">São Luiz Star</span></div>
+      <span class="tour-badge">Tour 360°</span>
     </div>
   </div>
 </section>
 
 <!-- PLANOS -->
 <section class="plans-section" id="planos">
-  <div class="section-label">Investimento</div>
-  <h2>Planos para <em>cada necessidade</em></h2>
-  <p class="section-sub">Combos completos com fotografia profissional + tour virtual. Escolha o que melhor se encaixa no seu negócio.</p>
+  <div class="section-label reveal">Investimento</div>
+  <h2 class="reveal reveal-delay-1">Planos que cabem<br>no seu <em>orçamento</em></h2>
+  <p class="section-sub reveal reveal-delay-2">Combos completos com fotografia profissional + tour virtual. Escolha o que melhor se encaixa no seu negócio.</p>
   <div class="plans-grid">
+
     <!-- ESSENCIAL -->
-    <div class="plan-card">
-      <div class="plan-name">Plano 01</div>
-      <div class="plan-title">Combo Essencial</div>
+    <div class="plan-card reveal reveal-delay-1">
+      <div class="plan-name">Plano Essencial</div>
       <div class="plan-price">
         <div class="plan-price-main">12× R$275</div>
         <div class="plan-price-period">ou R$3.300 à vista</div>
@@ -610,14 +469,15 @@
         <li>Edição profissional inclusa</li>
       </ul>
       <div class="plan-target">Ideal para consultórios, escritórios, restaurantes, pousadas e imóveis até 3 quartos.</div>
-      <br>
-      <button class="btn-outline" style="width:100%; margin-top: 16px" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Solicitar</button>
+      <div class="plan-btn-wrap">
+        <button class="btn-outline" style="width:100%" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Contratar</button>
+      </div>
     </div>
+
     <!-- PRO -->
-    <div class="plan-card featured">
-      <div class="plan-badge">Mais popular</div>
-      <div class="plan-name">Plano 02</div>
-      <div class="plan-title">Combo Pro</div>
+    <div class="plan-card featured reveal reveal-delay-2">
+      <div class="plan-badge">Plano mais contratado</div>
+      <div class="plan-name">Plano Pro</div>
       <div class="plan-price">
         <div class="plan-price-main">12× R$575</div>
         <div class="plan-price-period">ou R$6.900 à vista</div>
@@ -630,13 +490,14 @@
         <li>Edição profissional inclusa</li>
       </ul>
       <div class="plan-target">Ideal para clínicas, hospitais, hotéis, empresas, casas de festas e imóveis alto padrão.</div>
-      <br>
-      <button class="btn-primary" style="width:100%; margin-top:16px" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Solicitar</button>
+      <div class="plan-btn-wrap">
+        <button class="btn-primary" style="width:100%" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Contratar</button>
+      </div>
     </div>
+
     <!-- PREMIUM -->
-    <div class="plan-card">
-      <div class="plan-name">Plano 03</div>
-      <div class="plan-title">Combo Premium</div>
+    <div class="plan-card reveal reveal-delay-3">
+      <div class="plan-name">Plano Premium</div>
       <div class="plan-price">
         <div class="plan-price-main">12× R$890</div>
         <div class="plan-price-period">ou R$10.680 à vista</div>
@@ -651,43 +512,52 @@
         <li>Prioridade na entrega</li>
       </ul>
       <div class="plan-target">Ideal para construtoras, grandes clínicas, hospitais, resorts, mansões e grandes espaços.</div>
-      <br>
-      <button class="btn-outline" style="width:100%; margin-top:16px" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Solicitar</button>
+      <div class="plan-btn-wrap">
+        <button class="btn-outline" style="width:100%" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Contratar</button>
+      </div>
     </div>
+
   </div>
 </section>
 
 <!-- DIFERENCIAIS -->
 <section class="diff-section">
   <div>
-    <div class="section-label">Por que nos escolher</div>
-    <h2>Diferenciais que<br><em>fazem a diferença</em></h2>
-    <p class="section-sub" style="margin-bottom:48px">Cada projeto recebe atenção individualizada, do planejamento à entrega final.</p>
+    <div class="section-label reveal">Por que nos escolher</div>
+    <h2 class="reveal reveal-delay-1">Diferenciais que agregam valor<br>ao seu <em>negócio.</em></h2>
+    <p class="section-sub reveal reveal-delay-2" style="margin-bottom:48px">Cada projeto recebe atenção individualizada, do planejamento à entrega final.</p>
     <div class="diff-list">
-      <div class="diff-item">
+      <div class="diff-item reveal reveal-delay-1">
         <div class="diff-num">01</div>
         <div>
           <div class="diff-title">Atendimento Personalizado</div>
           <p class="diff-desc">Cada cliente tem necessidades únicas. Planejamos cada sessão do zero, entendendo o espaço e o que precisa ser destacado.</p>
         </div>
       </div>
-      <div class="diff-item">
+      <div class="diff-item reveal reveal-delay-2">
         <div class="diff-num">02</div>
         <div>
           <div class="diff-title">Edição Profissional</div>
           <p class="diff-desc">Pós-produção de alto nível em cada imagem: iluminação, cores e composição refinadas para máximo impacto visual.</p>
         </div>
       </div>
-      <div class="diff-item">
+      <div class="diff-item reveal reveal-delay-3">
         <div class="diff-num">03</div>
         <div>
           <div class="diff-title">Pacotes Flexíveis</div>
           <p class="diff-desc">Três opções de combo adaptadas ao tamanho e necessidade do seu negócio, com parcelamento em até 12×.</p>
         </div>
       </div>
+      <div class="diff-item reveal reveal-delay-3">
+        <div class="diff-num">04</div>
+        <div>
+          <div class="diff-title">Pagamento Facilitado</div>
+          <p class="diff-desc">Parcelamos em até 12× sem burocracia. Você investe no seu espaço sem comprometer o fluxo de caixa do seu negócio.</p>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="diff-visual">
+  <div class="diff-visual reveal reveal-delay-2">
     <div class="diff-img-main">
       <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
     </div>
@@ -698,68 +568,119 @@
   </div>
 </section>
 
+<!-- DEPOIMENTOS -->
+<section class="testimonials-section" id="depoimentos">
+  <div class="section-label reveal">O que dizem nossos clientes</div>
+  <h2 class="reveal reveal-delay-1">Resultados que <em>falam por si</em></h2>
+  <p class="section-sub reveal reveal-delay-2">Empresas que confiaram no nosso trabalho e viram a diferença na presença visual do seu espaço.</p>
+
+  <div class="testimonials-grid">
+    <div class="tcard">
+      <div class="tcard-quote">"</div>
+      <p class="tcard-text">Depoimento do cliente aqui. Resultados incríveis, profissionalismo impecável e fotos que transformaram a apresentação do nosso espaço.</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">
+          <img src="depoimento1.jpg" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="tcard-avatar-placeholder" style="display:none">A</div>
+        </div>
+        <div>
+          <div class="tcard-name">Nome do Cliente</div>
+          <div class="tcard-role">Cargo · Empresa</div>
+          <div class="tcard-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-quote">"</div>
+      <p class="tcard-text">Depoimento do cliente aqui. O tour virtual foi um diferencial enorme para atrair novos pacientes para a clínica.</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">
+          <img src="depoimento2.jpg" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="tcard-avatar-placeholder" style="display:none">B</div>
+        </div>
+        <div>
+          <div class="tcard-name">Nome do Cliente</div>
+          <div class="tcard-role">Cargo · Empresa</div>
+          <div class="tcard-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-quote">"</div>
+      <p class="tcard-text">Depoimento do cliente aqui. Atendimento personalizado do início ao fim. As fotos do hotel ficaram de tirar o fôlego.</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">
+          <img src="depoimento3.jpg" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="tcard-avatar-placeholder" style="display:none">C</div>
+        </div>
+        <div>
+          <div class="tcard-name">Nome do Cliente</div>
+          <div class="tcard-role">Cargo · Empresa</div>
+          <div class="tcard-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-quote">"</div>
+      <p class="tcard-text">Depoimento do cliente aqui. Investimento que valeu muito. Nossa presença no Google Maps melhorou e as visitas aumentaram.</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">
+          <img src="depoimento4.jpg" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="tcard-avatar-placeholder" style="display:none">D</div>
+        </div>
+        <div>
+          <div class="tcard-name">Nome do Cliente</div>
+          <div class="tcard-role">Cargo · Empresa</div>
+          <div class="tcard-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTATO -->
 <section class="contact-section" id="contato">
   <div class="contact-info">
-    <div class="section-label">Fale conosco</div>
-    <h2>Vamos valorizar<br><em>o seu espaço</em></h2>
-    <p class="section-sub" style="margin-bottom: 0">Preencha o formulário e entraremos em contato para montar o melhor plano para o seu negócio.</p>
+    <div class="section-label reveal">Fale conosco</div>
+    <h2 class="reveal reveal-delay-1">Vamos valorizar<br><em>o seu espaço</em></h2>
+    <p class="section-sub reveal reveal-delay-2" style="margin-bottom:0">Preencha o formulário e entraremos em contato para montar o melhor plano para o seu negócio.</p>
     <div class="contact-detail">
-      <div class="contact-item">
-        <div class="contact-icon">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        </div>
+      <div class="contact-item reveal reveal-delay-1">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
         <div>
           <div class="contact-label">WhatsApp</div>
           <div class="contact-value">(21) 98743-1010</div>
         </div>
       </div>
-      <div class="contact-item">
-        <div class="contact-icon">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
+      <div class="contact-item reveal reveal-delay-2">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
         <div>
           <div class="contact-label">E-mail</div>
-          <div class="contact-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c5a1a4abb1a4b685a8a4b7a6aab6a1a4abb1a4b6ebaba0b1">[email&#160;protected]</a></div>
+          <div class="contact-value">dantas@marcosdantas.net</div>
         </div>
       </div>
     </div>
   </div>
-  <form onsubmit="handleSubmit(event)">
+  <form onsubmit="handleSubmit(event)" class="reveal reveal-delay-2">
     <div class="form-row">
-      <div class="field">
-        <label>Nome</label>
-        <input type="text" placeholder="Seu nome">
-      </div>
-      <div class="field">
-        <label>Empresa</label>
-        <input type="text" placeholder="Nome do negócio">
-      </div>
+      <div class="field"><label>Nome</label><input type="text" placeholder="Seu nome"></div>
+      <div class="field"><label>Empresa</label><input type="text" placeholder="Nome do negócio"></div>
     </div>
     <div class="form-row">
-      <div class="field">
-        <label>WhatsApp</label>
-        <input type="tel" placeholder="(00) 00000-0000">
-      </div>
+      <div class="field"><label>WhatsApp</label><input type="tel" placeholder="(00) 00000-0000"></div>
       <div class="field">
         <label>Plano de interesse</label>
         <select>
           <option value="">Selecione...</option>
-          <option>Combo Essencial — 12× R$275</option>
-          <option>Combo Pro — 12× R$575</option>
-          <option>Combo Premium — 12× R$890</option>
+          <option>Plano Essencial — 12× R$275</option>
+          <option>Plano Pro — 12× R$575</option>
+          <option>Plano Premium — 12× R$890</option>
           <option>Ainda não sei, quero conversar</option>
         </select>
       </div>
     </div>
-    <div class="field">
-      <label>Tipo de negócio</label>
-      <input type="text" placeholder="Ex: Clínica odontológica, hotel, escritório...">
-    </div>
-    <div class="field">
-      <label>Mensagem (opcional)</label>
-      <textarea placeholder="Conte um pouco mais sobre o seu espaço..."></textarea>
-    </div>
+    <div class="field"><label>Tipo de negócio</label><input type="text" placeholder="Ex: Clínica odontológica, hotel, escritório..."></div>
+    <div class="field"><label>Mensagem (opcional)</label><textarea placeholder="Conte um pouco mais sobre o seu espaço..."></textarea></div>
     <button type="submit" class="btn-primary" style="width:100%; padding:18px">Enviar Solicitação</button>
   </form>
 </section>
@@ -767,42 +688,52 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">FotoLab</div>
-  <div class="footer-text">© 2026 · Fotografia de Arquitetura & Tour Virtual · Rio de Janeiro, RJ</div>
+  <div class="footer-text">© 2026 · Fotografia de Ambientes & Tour Virtual · Rio de Janeiro, RJ</div>
   <div class="footer-links">
     <a href="#">Instagram</a>
-    <a href="#">Portfolio</a>
+    <a href="#">Portfólio</a>
     <a href="#contato">Contato</a>
   </div>
 </footer>
 
 <script>
-  // ── DARK / LIGHT MODE ──
-  function toggleTheme() {
-    const isLight = document.body.classList.toggle('light-mode');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-  }
-  // Aplica o tema salvo ao carregar
-  (function() {
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light') document.body.classList.add('light-mode');
-  })();
+  // SCROLL REVEAL
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  // ── FORM SUBMIT ──
+  document.querySelectorAll('.reveal, .tcard').forEach(el => observer.observe(el));
+
+  // PARALLAX SUTIL NO HERO
+  window.addEventListener('scroll', () => {
+    const grid = document.getElementById('heroGrid');
+    if (!grid) return;
+    const sy = window.scrollY;
+    if (sy < window.innerHeight * 1.2) {
+      grid.style.transform = 'translateY(' + (sy * 0.13) + 'px)';
+    }
+  }, { passive: true });
+
+  // FORM SUBMIT
   function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button[type="submit"]');
-    const original = btn.textContent;
+    const orig = btn.textContent;
     btn.textContent = 'Mensagem enviada! ✓';
     btn.style.background = '#2d6a4f';
-    btn.style.color = '#fff';
     btn.disabled = true;
     setTimeout(() => {
-      btn.textContent = original;
+      btn.textContent = orig;
       btn.style.background = '';
-      btn.style.color = '';
       btn.disabled = false;
       e.target.reset();
     }, 3000);
   }
-</script></body>
+</script>
+</body>
 </html>
