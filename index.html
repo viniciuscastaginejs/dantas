@@ -201,8 +201,9 @@
   .diff-title { font-size: 1rem; font-weight: 400; margin-bottom: 6px; color: var(--dark); }
   .diff-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
   .diff-visual { position: relative; height: 500px; }
-  .diff-img-main { position: absolute; inset: 0; background: linear-gradient(135deg, #d4cec8, #c8bfb4 60%, #d0c8c0); display: flex; align-items: center; justify-content: center; }
-  .diff-img-main svg { width: 64px; height: 64px; fill: var(--red); opacity: 0.08; }
+  .diff-img-main { position: absolute; inset: 0; background: linear-gradient(135deg, #d4cec8, #c8bfb4 60%, #d0c8c0); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .diff-img-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .diff-img-main svg { width: 64px; height: 64px; fill: var(--red); opacity: 0.08; position: relative; z-index: 1; }
   .diff-badge { position: absolute; bottom: -20px; right: -20px; background: var(--bg); border: 1px solid var(--border); padding: 20px 28px; text-align: center; box-shadow: var(--shadow); border-color: rgba(26,24,20,0.09); }
   .diff-badge-num { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 300; color: var(--red); display: block; }
   .diff-badge-text { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
@@ -545,7 +546,7 @@
       </ul>
       <div class="plan-target">Ideal para Consultórios, Escritórios, Restaurantes, Pousadas e Imóveis até 3 quartos.</div>
       <div class="plan-btn-wrap">
-        <button class="btn-outline" style="width:100%" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Contratar</button>
+        <a href="https://pay.sumup.com/b2c/Q9K3SCE4" target="_blank" rel="noopener" class="btn-outline" style="width:100%;display:block;text-align:center;text-decoration:none;">Contratar</a>
       </div>
     </div>
 
@@ -566,7 +567,7 @@
       </ul>
       <div class="plan-target">Ideal para Clínicas, Hospitais, Hotéis, Empresas, Casas de Festas e Imóveis Alto Padrão.</div>
       <div class="plan-btn-wrap">
-        <button class="btn-primary" style="width:100%" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Contratar</button>
+        <a href="https://pay.sumup.com/b2c/QY2N64BD" target="_blank" rel="noopener" class="btn-primary" style="width:100%;display:block;text-align:center;text-decoration:none;">Contratar</a>
       </div>
     </div>
 
@@ -588,7 +589,7 @@
       </ul>
       <div class="plan-target">Ideal para Construtoras, Grandes Clínicas, Hospitais, Resorts, Mansões e Grandes Espaços.</div>
       <div class="plan-btn-wrap">
-        <button class="btn-outline" style="width:100%" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Contratar</button>
+        <a href="https://pay.sumup.com/b2c/QNNFMPIL" target="_blank" rel="noopener" class="btn-outline" style="width:100%;display:block;text-align:center;text-decoration:none;">Contratar</a>
       </div>
     </div>
 
@@ -634,6 +635,7 @@
   </div>
   <div class="diff-visual reveal reveal-delay-2">
     <div class="diff-img-main">
+      <img src="exemplo9.jpeg" alt="Nossa experiência" onerror="this.style.display='none'">
       <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
     </div>
     <div class="diff-badge">
