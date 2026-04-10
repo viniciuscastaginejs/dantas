@@ -67,8 +67,8 @@
   .hero-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
   .photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; opacity: 0.18; }
   .photo-placeholder svg { width: 48px; height: 48px; fill: var(--red); }
-  .hero-stat-bar { position: absolute; bottom: 0; left: 0; right: 0; display: flex; gap: 40px; justify-content: center; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-top: 1px solid var(--border); padding: 20px 32px; z-index: 3; }
-  .stat { text-align: center; }
+  .hero-stat-bar { position: absolute; bottom: 0; left: 0; right: 0; display: flex; gap: 40px; justify-content: center; align-items: flex-end; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-top: 1px solid var(--border); padding: 20px 32px; z-index: 3; }
+  .stat { text-align: center; display: flex; flex-direction: column; align-items: center; }
   .stat-num { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 300; color: var(--red); display: block; }
   .stat-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
 
@@ -116,7 +116,7 @@
   /* ── TOUR VIRTUAL ROW ── */
   .tours-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 260px;
     gap: 3px;
     margin-top: 3px;
@@ -167,9 +167,9 @@
 
   /* ── PLANOS ── */
   .plans-section { padding: 100px 48px; }
-  .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 64px; align-items: end; }
+  .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 64px; align-items: stretch; }
   .plan-card { background: var(--card-bg); padding: 48px 36px; position: relative; border: 1px solid rgba(26,24,20,0.1); transition: all 0.4s; box-shadow: var(--shadow); display: flex; flex-direction: column; }
-  .plan-card.featured { background: var(--dark); border-color: var(--dark); }
+  .plan-card.featured { background: #a0a09e; border-color: #a0a09e; }
   .plan-card.featured .plan-name,
   .plan-card.featured .plan-title { color: rgba(244,240,235,0.85); }
   .plan-card.featured .plan-price-main { color: var(--red-light); }
@@ -181,7 +181,7 @@
   .plan-card.featured .plan-target { color: rgba(232,100,80,0.85); }
   .plan-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
   .plan-badge { position: absolute; top: -1px; left: 36px; background: var(--red); color: #fff; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 5px 14px; font-weight: 500; }
-  .plan-name { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .plan-name { font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-family: 'Fraunces', serif; font-weight: 300; }
   .plan-title { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 300; margin-bottom: 8px; color: var(--dark); }
   .plan-price { margin: 28px 0 32px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 0; }
   .plan-price-main { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 300; color: var(--red); }
@@ -254,6 +254,29 @@
   .tcard-role { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); margin-top: 2px; text-transform: uppercase; }
   .tcard-stars { color: var(--red); font-size: 0.72rem; margin-top: 3px; letter-spacing: 2px; }
 
+
+  /* ── LOGOS CLIENTES ── */
+  .logos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+    margin-top: 56px;
+  }
+  .logo-item {
+    background: var(--card-bg);
+    border: 1px solid rgba(26,24,20,0.08);
+    padding: 32px 24px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .logo-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .logo-item img { max-width: 140px; max-height: 60px; object-fit: contain; filter: grayscale(100%); opacity: 0.65; transition: filter 0.3s, opacity 0.3s; }
+  .logo-item:hover img { filter: grayscale(0%); opacity: 1; }
+  .logo-placeholder { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+
   /* ── CONTATO ── */
   .contact-section { padding: 100px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
   .contact-info { padding-right: 40px; }
@@ -318,7 +341,7 @@
     .hero-stat-bar { gap: 20px; }
     .section, .plans-section, .portfolio-section, .testimonials-section, .contact-section { padding: 64px 24px; }
     .services-grid, .plans-grid { grid-template-columns: 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr; }
+    .logos-grid { grid-template-columns: repeat(2, 1fr); }
     .tours-row { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; }
     .tour-item:nth-child(5) { grid-column: 1 / 3; }
     .diff-section { grid-template-columns: 1fr; padding: 64px 24px; }
@@ -354,7 +377,7 @@
   <div class="hero-left">
     <div class="hero-tag">Fotografia & Tour Virtual</div>
     <h1>Valorize a presença digital<br>do seu <em>espaço.</em></h1>
-    <p class="hero-sub">Fotografia profissional de ambientes e Tour Virtual para empresas.</p>
+    <p class="hero-sub">Fotografia profissional de ambientes e Tour Virtual da sua empresa, agora cabem no seu orçamento.</p>
     <div class="hero-btns">
       <button class="btn-primary" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})">Ver Planos</button>
       <button class="btn-outline" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">Ver Portfólio</button>
@@ -377,7 +400,7 @@
     </div>
     <div class="hero-stat-bar">
       <div class="stat"><span class="stat-num">1000+</span><span class="stat-label">Projetos</span></div>
-      <div class="stat"><span class="stat-num">5★</span><span class="stat-label">Avaliação</span></div>
+      <div class="stat"><span class="stat-num">5<span style="font-size:1.1rem">★</span></span><span class="stat-label">Avaliação</span></div>
       <div class="stat"><span class="stat-num">18+</span><span class="stat-label">Anos de mercado</span></div>
     </div>
   </div>
@@ -388,7 +411,7 @@
 <!-- SERVIÇOS -->
 <section class="section" id="servicos" style="background:#fafafa;">
   <div class="section-label reveal">O que oferecemos</div>
-  <h2 class="reveal reveal-delay-1">Valorize a presença digital<br>da sua <em>empresa.</em></h2>
+  <h2 class="reveal reveal-delay-1">Imagens profissionais que agregam<br>valor ao seu <em>negócio.</em></h2>
   <p class="section-sub reveal reveal-delay-2">Criamos uma experiência virtual do seu espaço que pode ser explorada diretamente no Google e no seu site.</p>
   <div class="services-grid">
     <div class="service-card reveal reveal-delay-1">
@@ -418,7 +441,7 @@
 <!-- PORTFÓLIO -->
 <section class="portfolio-section" id="portfolio">
   <div class="section-label reveal">Nosso trabalho</div>
-  <h2 class="reveal reveal-delay-1">Espaços que <em>valorizamos</em></h2>
+  <h2 class="reveal reveal-delay-1">Valorize o <em>seu negócio</em></h2>
 
   <!-- Fotos -->
   <div class="portfolio-grid">
@@ -449,8 +472,18 @@
     </div>
   </div>
 
-  <!-- Tours Virtuais — 4 menores na esquerda, maior na direita -->
+  <!-- Tours Virtuais — São Luiz MAIOR na esquerda, menores na direita -->
   <div class="tours-row reveal">
+    <!-- Maior na esquerda -->
+    <a class="tour-item" href="https://kuula.co/share/collection/79JFN?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" target="_blank" rel="noopener">
+      <img src="tour5.png" alt="São Luiz Star" onerror="this.style.display='none'">
+      <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+      <span class="tour-badge">Tour 360°</span>
+      <div class="tour-overlay">
+        <span class="tour-label">São Luiz Star</span>
+        <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
+      </div>
+    </a>
     <a class="tour-item" href="https://fotolabestudio.net/clientes/ferradurah/tour/" target="_blank" rel="noopener">
       <img src="tour1.png" alt="Ferradura Resort" onerror="this.style.display='none'">
       <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
@@ -487,16 +520,6 @@
         <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
       </div>
     </a>
-    <!-- Maior na direita -->
-    <a class="tour-item" href="https://kuula.co/share/collection/79JFN?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" target="_blank" rel="noopener">
-      <img src="tour5.png" alt="São Luiz Star" onerror="this.style.display='none'">
-      <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
-      <span class="tour-badge">Tour 360°</span>
-      <div class="tour-overlay">
-        <span class="tour-label">São Luiz Star</span>
-        <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
-      </div>
-    </a>
   </div>
 </section>
 
@@ -504,7 +527,7 @@
 <section class="plans-section" id="planos" style="background:#fafafa;">
   <div class="section-label reveal">Investimento</div>
   <h2 class="reveal reveal-delay-1">Planos que cabem<br>no seu <em>orçamento</em></h2>
-  <p class="section-sub reveal reveal-delay-2">Combos completos com fotografia profissional + tour virtual. Escolha o que melhor se encaixa no seu negócio.</p>
+  <p class="section-sub reveal reveal-delay-2">Planos completos com Fotografia Profissional e Tour Virtual. Escolha o que melhor se encaixa no seu negócio.</p>
   <div class="plans-grid">
 
     <!-- ESSENCIAL -->
@@ -516,11 +539,11 @@
       </div>
       <ul class="plan-features">
         <li><strong>10 fotos</strong> profissionais</li>
-        <li>Tour virtual com <strong>10 ambientes</strong></li>
+        <li>Tour Virtual com <strong>10 ambientes</strong></li>
         <li><strong>12 meses</strong> de hospedagem</li>
         <li>Edição profissional inclusa</li>
       </ul>
-      <div class="plan-target">Ideal para consultórios, escritórios, restaurantes, pousadas e imóveis até 3 quartos.</div>
+      <div class="plan-target">Ideal para Consultórios, Escritórios, Restaurantes, Pousadas e Imóveis até 3 quartos.</div>
       <div class="plan-btn-wrap">
         <button class="btn-outline" style="width:100%" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Contratar</button>
       </div>
@@ -536,12 +559,12 @@
       </div>
       <ul class="plan-features">
         <li><strong>30 fotos</strong> profissionais</li>
-        <li>Tour virtual com <strong>30 ambientes</strong></li>
+        <li>Tour Virtual com <strong>30 ambientes</strong></li>
         <li><strong>18 meses</strong> de hospedagem</li>
         <li>Presença no <strong>Google Street View</strong></li>
         <li>Edição profissional inclusa</li>
       </ul>
-      <div class="plan-target">Ideal para clínicas, hospitais, hotéis, empresas, casas de festas e imóveis alto padrão.</div>
+      <div class="plan-target">Ideal para Clínicas, Hospitais, Hotéis, Empresas, Casas de Festas e Imóveis Alto Padrão.</div>
       <div class="plan-btn-wrap">
         <button class="btn-primary" style="width:100%" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Contratar</button>
       </div>
@@ -558,12 +581,12 @@
         <li><strong>50 fotos</strong> profissionais</li>
         <li><strong>Imagens aéreas</strong> inclusas</li>
         <li>10 fotos para <strong>redes sociais</strong></li>
-        <li>Tour com <strong>50 ambientes</strong></li>
+        <li>Tour Virtual com <strong>50 ambientes</strong></li>
         <li><strong>24 meses</strong> de hospedagem</li>
         <li>Presença no <strong>Google Street View</strong></li>
         <li>Prioridade na entrega</li>
       </ul>
-      <div class="plan-target">Ideal para construtoras, grandes clínicas, hospitais, resorts, mansões e grandes espaços.</div>
+      <div class="plan-target">Ideal para Construtoras, Grandes Clínicas, Hospitais, Resorts, Mansões e Grandes Espaços.</div>
       <div class="plan-btn-wrap">
         <button class="btn-outline" style="width:100%" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Contratar</button>
       </div>
@@ -576,8 +599,8 @@
 <section class="diff-section">
   <div>
     <div class="section-label reveal">Por que nos escolher</div>
-    <h2 class="reveal reveal-delay-1">Diferenciais que agregam valor<br>ao seu <em>negócio.</em></h2>
-    <p class="section-sub reveal reveal-delay-2" style="margin-bottom:48px">Cada projeto recebe atenção individualizada, do planejamento à entrega final.</p>
+    <h2 class="reveal reveal-delay-1">Nossa experiência valoriza<br>o seu <em>negócio.</em></h2>
+    <p class="section-sub reveal reveal-delay-2" style="margin-bottom:48px">Com qualidade e comprometimento, cada projeto recebe atenção individualizada, do planejamento à entrega final.</p>
     <div class="diff-list">
       <div class="diff-item reveal reveal-delay-1">
         <div class="diff-num">01</div>
@@ -622,71 +645,19 @@
 
 <!-- DEPOIMENTOS -->
 <section class="testimonials-section" id="depoimentos">
-  <div class="section-label reveal">O que dizem nossos clientes</div>
-  <h2 class="reveal reveal-delay-1">Resultados que <em>falam por si</em></h2>
+  <div class="section-label reveal">Nossos Clientes</div>
+  <h2 class="reveal reveal-delay-1">Empresas que já <em>atendemos</em></h2>
   <p class="section-sub reveal reveal-delay-2">Empresas que confiaram no nosso trabalho e viram a diferença na presença visual do seu espaço.</p>
 
-  <div class="testimonials-grid">
-    <div class="tcard">
-      <div class="tcard-quote">"</div>
-      <p class="tcard-text">Depoimento do cliente aqui. Resultados incríveis, profissionalismo impecável e fotos que transformaram a apresentação do nosso espaço.</p>
-      <div class="tcard-author">
-        <div class="tcard-avatar">
-          <img src="depoimento1.jpeg" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div class="tcard-avatar-placeholder" style="display:none">A</div>
-        </div>
-        <div>
-          <div class="tcard-name">Nome do Cliente</div>
-          <div class="tcard-role">Cargo · Empresa</div>
-          <div class="tcard-stars">★★★★★</div>
-        </div>
-      </div>
-    </div>
-    <div class="tcard">
-      <div class="tcard-quote">"</div>
-      <p class="tcard-text">Depoimento do cliente aqui. O tour virtual foi um diferencial enorme para atrair novos pacientes para a clínica.</p>
-      <div class="tcard-author">
-        <div class="tcard-avatar">
-          <img src="depoimento2.jpeg" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div class="tcard-avatar-placeholder" style="display:none">B</div>
-        </div>
-        <div>
-          <div class="tcard-name">Nome do Cliente</div>
-          <div class="tcard-role">Cargo · Empresa</div>
-          <div class="tcard-stars">★★★★★</div>
-        </div>
-      </div>
-    </div>
-    <div class="tcard">
-      <div class="tcard-quote">"</div>
-      <p class="tcard-text">Depoimento do cliente aqui. Atendimento personalizado do início ao fim. As fotos do hotel ficaram de tirar o fôlego.</p>
-      <div class="tcard-author">
-        <div class="tcard-avatar">
-          <img src="depoimento3.jpeg" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div class="tcard-avatar-placeholder" style="display:none">C</div>
-        </div>
-        <div>
-          <div class="tcard-name">Nome do Cliente</div>
-          <div class="tcard-role">Cargo · Empresa</div>
-          <div class="tcard-stars">★★★★★</div>
-        </div>
-      </div>
-    </div>
-    <div class="tcard">
-      <div class="tcard-quote">"</div>
-      <p class="tcard-text">Depoimento do cliente aqui. Investimento que valeu muito. Nossa presença no Google Maps melhorou e as visitas aumentaram.</p>
-      <div class="tcard-author">
-        <div class="tcard-avatar">
-          <img src="depoimento4.jpeg" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div class="tcard-avatar-placeholder" style="display:none">D</div>
-        </div>
-        <div>
-          <div class="tcard-name">Nome do Cliente</div>
-          <div class="tcard-role">Cargo · Empresa</div>
-          <div class="tcard-stars">★★★★★</div>
-        </div>
-      </div>
-    </div>
+  <div class="logos-grid">
+    <div class="logo-item"><img src="cliente1.png" alt="Cliente 1" onerror="this.parentElement.style.display='none'"><div class="logo-placeholder">Logo 1</div></div>
+    <div class="logo-item"><img src="cliente2.png" alt="Cliente 2" onerror="this.parentElement.style.display='none'"><div class="logo-placeholder">Logo 2</div></div>
+    <div class="logo-item"><img src="cliente3.png" alt="Cliente 3" onerror="this.parentElement.style.display='none'"><div class="logo-placeholder">Logo 3</div></div>
+    <div class="logo-item"><img src="cliente4.png" alt="Cliente 4" onerror="this.parentElement.style.display='none'"><div class="logo-placeholder">Logo 4</div></div>
+    <div class="logo-item"><img src="cliente5.png" alt="Cliente 5" onerror="this.parentElement.style.display='none'"><div class="logo-placeholder">Logo 5</div></div>
+    <div class="logo-item"><img src="cliente6.png" alt="Cliente 6" onerror="this.parentElement.style.display='none'"><div class="logo-placeholder">Logo 6</div></div>
+    <div class="logo-item"><img src="cliente7.png" alt="Cliente 7" onerror="this.parentElement.style.display='none'"><div class="logo-placeholder">Logo 7</div></div>
+    <div class="logo-item"><img src="cliente8.png" alt="Cliente 8" onerror="this.parentElement.style.display='none'"><div class="logo-placeholder">Logo 8</div></div>
   </div>
 </section>
 
@@ -694,8 +665,8 @@
 <section class="contact-section" id="contato" style="background:#fafafa;">
   <div class="contact-info">
     <div class="section-label reveal">Fale conosco</div>
-    <h2 class="reveal reveal-delay-1">Vamos valorizar<br><em>o seu espaço</em></h2>
-    <p class="section-sub reveal reveal-delay-2" style="margin-bottom:0">Preencha o formulário e entraremos em contato para montar o melhor plano para o seu negócio.</p>
+    <h2 class="reveal reveal-delay-1">Temos uma solução<br>para sua <em>empresa</em></h2>
+    <p class="section-sub reveal reveal-delay-2" style="margin-bottom:0">Preencha o formulário e entraremos em contato via WhatsApp para montar o melhor plano para o seu negócio.</p>
     <div class="contact-detail">
       <div class="contact-item reveal reveal-delay-1">
         <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
