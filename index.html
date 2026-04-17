@@ -117,7 +117,15 @@
   /* ── SERVICES ── */
   .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
   .service-card { background: var(--card-bg); padding: 48px 36px; border: 1px solid rgba(26,24,20,0.09); transition: all 0.4s; position: relative; overflow: hidden; box-shadow: var(--shadow); }
-  .service-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(232,50,26,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s; }
+  .service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(232,50,26,0.04) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none; /* ← isso aqui */
+}
   .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: rgba(232,50,26,0.2); }
   .service-card:hover::before { opacity: 1; }
   .service-num { font-family: 'Fraunces', serif; font-size: 3.5rem; font-weight: 300; color: rgba(232,50,26,0.08); line-height: 1; margin-bottom: 24px; }
