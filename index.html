@@ -28,7 +28,6 @@
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
 
-  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -46,7 +45,6 @@
   .nav-cta { background: transparent; border: 1px solid var(--red); color: var(--red); padding: 10px 24px; font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
   .nav-cta:hover { background: var(--red); color: #fff; }
 
-  /* ── HERO ── */
   .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
   .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 120px 64px 80px; position: relative; z-index: 2; }
   .hero-tag { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
@@ -60,12 +58,7 @@
   .btn-outline { background: transparent; color: var(--dark); padding: 16px 36px; border: 1px solid rgba(26,24,20,0.25); cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s; }
   .btn-outline:hover { border-color: var(--dark); }
 
-  /* ── HERO RIGHT — Layout 3 colunas conforme referência ── */
   .hero-right { position: relative; overflow: hidden; min-height: 100vh; }
-  @media (max-width: 900px) {
-    .hero-right { min-height: unset !important; }
-  }
-
   .hero-grid {
     position: absolute; inset: 0;
     display: grid;
@@ -73,32 +66,14 @@
     grid-template-rows: 1fr 1fr;
     gap: 3px;
   }
-
-  /* Foto 1 — topo esquerda */
-  .hero-img:nth-child(1) {
-    grid-column: 1;
-    grid-row: 1;
-    background: linear-gradient(135deg, #d4cfc8, #c8c0b4);
-  }
-  /* Foto 2 — baixo esquerda (landscape) */
-  .hero-img:nth-child(2) {
-    grid-column: 1;
-    grid-row: 2;
-    background: linear-gradient(135deg, #cdd0d4, #bcc0c8);
-  }
-  /* Foto 3 — coluna direita full height */
-  .hero-img:nth-child(3) {
-    grid-column: 2;
-    grid-row: 1 / 3;
-    background: linear-gradient(135deg, #d0cbc4, #c4bdb4);
-  }
-
+  .hero-img:nth-child(1) { grid-column: 1; grid-row: 1; background: linear-gradient(135deg, #d4cfc8, #c8c0b4); }
+  .hero-img:nth-child(2) { grid-column: 1; grid-row: 2; background: linear-gradient(135deg, #cdd0d4, #bcc0c8); }
+  .hero-img:nth-child(3) { grid-column: 2; grid-row: 1 / 3; background: linear-gradient(135deg, #d0cbc4, #c4bdb4); }
   .hero-img { background: var(--surface2); overflow: hidden; position: relative; }
   .hero-img::after { content: attr(data-label); position: absolute; bottom: 12px; left: 12px; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.3); padding: 4px 8px; z-index: 2; }
   .hero-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
   .photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; opacity: 0.18; }
   .photo-placeholder svg { width: 48px; height: 48px; fill: var(--red); }
-
   .hero-stat-bar { position: absolute; bottom: 0; left: 0; right: 0; display: flex; gap: 40px; justify-content: center; align-items: flex-end; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-top: 1px solid var(--border); padding: 20px 32px; z-index: 3; }
   .stat { text-align: center; display: flex; flex-direction: column; align-items: center; }
   .stat-num { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 300; color: var(--red); display: block; }
@@ -106,7 +81,6 @@
 
   .divider { height: 1px; background: var(--border); margin: 0 48px; }
 
-  /* ── SECTIONS ── */
   .section { padding: 100px 48px; }
   .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
   .section-label::before { content: ''; width: 32px; height: 1px; background: var(--red); }
@@ -114,18 +88,9 @@
   h2 em { font-style: italic; color: var(--red); }
   .section-sub { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 520px; margin-bottom: 64px; }
 
-  /* ── SERVICES ── */
   .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
   .service-card { background: var(--card-bg); padding: 48px 36px; border: 1px solid rgba(26,24,20,0.09); transition: all 0.4s; position: relative; overflow: hidden; box-shadow: var(--shadow); }
-  .service-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(232,50,26,0.04) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s;
-  pointer-events: none; /* ← isso aqui */
-}
+  .service-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(232,50,26,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
   .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: rgba(232,50,26,0.2); }
   .service-card:hover::before { opacity: 1; }
   .service-num { font-family: 'Fraunces', serif; font-size: 3.5rem; font-weight: 300; color: rgba(232,50,26,0.08); line-height: 1; margin-bottom: 24px; }
@@ -136,7 +101,6 @@
   .service-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); text-decoration: none; transition: gap 0.3s; }
   .service-link:hover { gap: 14px; }
 
-  /* ── PORTFOLIO ── */
   .portfolio-section { padding: 100px 48px; background: var(--surface); }
   .portfolio-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 280px 280px; gap: 3px; margin-top: 48px; }
   .port-item { background: var(--surface2); position: relative; overflow: hidden; cursor: pointer; }
@@ -153,71 +117,27 @@
   .port-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; opacity: 0.15; }
   .port-inner svg { width: 40px; height: 40px; fill: var(--red); }
 
-  /* ── TOUR VIRTUAL ROW ── */
-  .tours-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 260px;
-    gap: 3px;
-    margin-top: 3px;
-  }
-  .tour-item {
-    position: relative; overflow: hidden; cursor: pointer;
-    background: var(--surface2);
-    text-decoration: none; display: block;
-  }
-  .tour-item img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.5s ease;
-  }
+  .tours-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; grid-template-rows: 260px; gap: 3px; margin-top: 3px; }
+  .tour-item { position: relative; overflow: hidden; cursor: pointer; background: var(--surface2); text-decoration: none; display: block; }
+  .tour-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
   .tour-item:hover img { transform: scale(1.05); }
-  .tour-overlay {
-    position: absolute; inset: 0; z-index: 2;
-    background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
-    display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
-    transition: background 0.3s;
-  }
+  .tour-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; transition: background 0.3s; }
   .tour-item:hover .tour-overlay { background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); }
   .tour-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: #ffffff; margin-bottom: 10px; }
-  .tour-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--red); color: #fff;
-    font-family: 'DM Sans', sans-serif; font-size: 0.65rem;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    padding: 7px 14px; border: none;
-    opacity: 0; transform: translateY(8px);
-    transition: opacity 0.3s, transform 0.3s;
-    width: fit-content;
-  }
+  .tour-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--red); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 7px 14px; border: none; opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s; width: fit-content; }
   .tour-btn svg { width: 12px; height: 12px; fill: none; stroke: #fff; stroke-width: 2; }
   .tour-item:hover .tour-btn { opacity: 1; transform: translateY(0); }
-  .tour-badge {
-    position: absolute; top: 12px; left: 12px; z-index: 3;
-    background: rgba(0,0,0,0.55); color: #fff;
-    font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase;
-    padding: 4px 10px; backdrop-filter: blur(4px);
-  }
-  .tour-placeholder {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .tour-badge { position: absolute; top: 12px; left: 12px; z-index: 3; background: rgba(0,0,0,0.55); color: #fff; font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 10px; backdrop-filter: blur(4px); }
+  .tour-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
   .tour-placeholder svg { width: 40px; height: 40px; fill: none; stroke: rgba(255,255,255,0.2); stroke-width: 1; }
 
-  /* ── SCROLL OFFSET — compensa nav fixa ── */
-  #planos, #portfolio, #servicos, #contato, #depoimentos {
-    scroll-margin-top: 92px;
-  }
+  #planos, #portfolio, #servicos, #contato, #depoimentos { scroll-margin-top: 92px; }
 
-  /* ── PLANOS ── */
   .plans-section { padding: 100px 48px; }
   .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 64px; align-items: stretch; }
   .plan-card { background: var(--card-bg); padding: 48px 36px; position: relative; border: 1px solid rgba(26,24,20,0.1); transition: all 0.4s; box-shadow: var(--shadow); display: flex; flex-direction: column; }
-
-  /* AJUSTE 3: Cor do fundo do plano Profissional — R:160 G:161 B:159 = #a0a19f */
   .plan-card.featured { background: rgb(211, 211, 211); border-color: rgb(211, 211, 211); }
-  .plan-card.featured .plan-name,
-  .plan-card.featured .plan-title { color: #1a1814; }
+  .plan-card.featured .plan-name, .plan-card.featured .plan-title { color: #1a1814; }
   .plan-card.featured .plan-price-main { color: var(--red); }
   .plan-card.featured .plan-price-period { color: #1a1814; }
   .plan-card.featured .plan-features li { color: #1a1814; }
@@ -239,7 +159,6 @@
   .plan-target { font-size: 0.85rem; color: rgba(232,50,26,0.7); font-style: italic; margin-bottom: 28px; }
   .plan-btn-wrap { margin-top: auto; }
 
-  /* ── DIFERENCIAIS ── */
   .diff-section { padding: 100px 48px; background: var(--surface); display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
   .diff-list { display: flex; flex-direction: column; gap: 32px; }
   .diff-item { display: flex; gap: 24px; align-items: flex-start; }
@@ -253,70 +172,19 @@
   .diff-badge-num { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 300; color: var(--red); display: block; }
   .diff-badge-text { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
 
-  /* ── DEPOIMENTOS ── */
-  .testimonials-section {
-    padding: 100px 48px;
-    background: var(--bg);
-    position: relative; overflow: hidden;
-  }
-  .testimonials-section::before {
-    content: '';
-    position: absolute; inset: 0; z-index: 0;
-    background-image: repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(232,50,26,0.03) 60px, rgba(232,50,26,0.03) 61px);
-    animation: bgDiag 24s linear infinite;
-    pointer-events: none;
-  }
+  .testimonials-section { padding: 100px 48px; background: var(--bg); position: relative; overflow: hidden; }
+  .testimonials-section::before { content: ''; position: absolute; inset: 0; z-index: 0; background-image: repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(232,50,26,0.03) 60px, rgba(232,50,26,0.03) 61px); animation: bgDiag 24s linear infinite; pointer-events: none; }
   @keyframes bgDiag { from { background-position: 0 0; } to { background-position: 120px 120px; } }
-  .testimonials-section::after {
-    content: '';
-    position: absolute; z-index: 0;
-    width: 700px; height: 700px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(232,50,26,0.06) 0%, transparent 65%);
-    top: -200px; right: -200px;
-    animation: orbeFloat 9s ease-in-out infinite;
-    pointer-events: none;
-  }
+  .testimonials-section::after { content: ''; position: absolute; z-index: 0; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(232,50,26,0.06) 0%, transparent 65%); top: -200px; right: -200px; animation: orbeFloat 9s ease-in-out infinite; pointer-events: none; }
   @keyframes orbeFloat { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(50px) scale(1.06); } }
   .testimonials-section > * { position: relative; z-index: 1; }
 
-  .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 56px; }
-
-  .tcard {
-    background: var(--card-bg); border: 1px solid rgba(26,24,20,0.1); padding: 36px 32px;
-    box-shadow: var(--shadow);
-  }
-  .tcard:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-  .tcard-quote { font-family: 'Fraunces', serif; font-size: 3.5rem; line-height: 0.8; color: var(--red); opacity: 0.2; margin-bottom: 12px; user-select: none; }
-  .tcard-text { font-size: 0.91rem; line-height: 1.78; color: var(--muted); font-style: italic; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
-  .tcard-author { display: flex; align-items: center; gap: 14px; }
-  .tcard-avatar { width: 48px; height: 48px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--border); background: var(--surface2); }
-  .tcard-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .tcard-avatar-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--red); background: rgba(232,50,26,0.08); }
-  .tcard-name { font-size: 0.88rem; font-weight: 500; color: var(--dark); }
-  .tcard-role { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); margin-top: 2px; text-transform: uppercase; }
-  .tcard-stars { color: var(--red); font-size: 0.72rem; margin-top: 3px; letter-spacing: 2px; }
-
-  /* ── LOGOS CLIENTES ── */
-  .logos-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 3px;
-    margin-top: 56px;
-  }
-  .logo-item {
-    background: var(--card-bg);
-    border: 1px solid rgba(26,24,20,0.08);
-    padding: 32px 24px;
-    display: flex; align-items: center; justify-content: center;
-    min-height: 100px;
-    box-shadow: var(--shadow);
-    transition: box-shadow 0.3s, transform 0.3s;
-  }
+  .logos-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; margin-top: 56px; }
+  .logo-item { background: var(--card-bg); border: 1px solid rgba(26,24,20,0.08); padding: 32px 24px; display: flex; align-items: center; justify-content: center; min-height: 100px; box-shadow: var(--shadow); transition: box-shadow 0.3s, transform 0.3s; }
   .logo-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
   .logo-item img { max-width: 140px; max-height: 60px; object-fit: contain; filter: grayscale(100%); opacity: 0.65; transition: filter 0.3s, opacity 0.3s; }
   .logo-item:hover img { filter: grayscale(0%); opacity: 1; }
 
-  /* ── CONTATO ── */
   .contact-section { padding: 100px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
   .contact-info { padding-right: 40px; }
   .contact-detail { display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
@@ -334,7 +202,6 @@
   textarea { resize: none; height: 120px; }
   select option { background: var(--card-bg); }
 
-  /* ── FOOTER ── */
   footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; background: var(--surface); }
   .footer-logo { font-family: 'Fraunces', serif; font-weight: 300; font-size: 1.1rem; color: var(--red); letter-spacing: 0.1em; }
   .footer-text { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; }
@@ -342,7 +209,6 @@
   .footer-links a { color: var(--muted); font-size: 0.72rem; text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s; }
   .footer-links a:hover { color: var(--red); }
 
-  /* ── ANIMATIONS ── */
   .reveal { opacity: 0; transform: translateY(32px); animation: revealUp 0.7s ease forwards; }
   .reveal-delay-1 { animation-delay: 0.1s; }
   .reveal-delay-2 { animation-delay: 0.2s; }
@@ -353,7 +219,6 @@
   .tcard:nth-child(2) { animation-delay: 0.15s; }
   .tcard:nth-child(3) { animation-delay: 0.25s; }
   .tcard:nth-child(4) { animation-delay: 0.35s; }
-
   @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   .hero-left > * { animation: fadeUp 0.8s ease forwards; opacity: 0; }
   .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
@@ -361,166 +226,60 @@
   .hero-left > *:nth-child(3) { animation-delay: 0.4s; }
   .hero-left > *:nth-child(4) { animation-delay: 0.55s; }
 
-  /* ══════════════════════════════════════════
-     AJUSTE 2: MOBILE — RESPONSIVIDADE CORRIGIDA
-  ══════════════════════════════════════════ */
   @media (max-width: 900px) {
-    /* NAV */
     nav { padding: 12px 20px; }
     nav ul { display: none; }
     .logo-img { height: 44px; }
-
-    /* HERO — empilha verticalmente */
-    .hero {
-      grid-template-columns: 1fr;
-      min-height: auto;
-      display: flex;
-      flex-direction: column;
-    }
-    .hero-left {
-      padding: 80px 20px 28px;
-      order: 1;
-      min-height: auto;
-    }
-    .hero-right {
-      order: 2;
-      position: relative;
-      height: 260px;
-      min-height: unset !important;
-      max-height: unset !important;
-    }
-
-    /* Grid hero mobile: 2 col x 2 row, tudo dentro dos 260px */
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      grid-template-columns: 1fr 1fr !important;
-      grid-template-rows: 1fr 1fr !important;
-    }
+    .hero { grid-template-columns: 1fr; min-height: auto; display: flex; flex-direction: column; }
+    .hero-left { padding: 80px 20px 28px; order: 1; min-height: auto; }
+    .hero-right { order: 2; position: relative; height: 260px; min-height: unset !important; max-height: unset !important; }
+    .hero-grid { position: absolute; inset: 0; grid-template-columns: 1fr 1fr !important; grid-template-rows: 1fr 1fr !important; }
     .hero-img:nth-child(1) { grid-column: 1 !important; grid-row: 1 !important; }
     .hero-img:nth-child(2) { grid-column: 1 !important; grid-row: 2 !important; }
     .hero-img:nth-child(3) { grid-column: 2 !important; grid-row: 1 / 3 !important; }
-
-    .hero-stat-bar { position: relative !important; }
-
-    .hero-stat-bar {
-      position: relative;
-      gap: 12px;
-      padding: 16px 12px;
-    }
+    .hero-stat-bar { position: relative !important; gap: 12px; padding: 16px 12px; }
     .stat-num { font-size: 1.3rem; }
     .stat-label { font-size: 0.55rem; }
-
-    /* SEÇÕES genéricas */
-    .section,
-    .plans-section,
-    .portfolio-section,
-    .testimonials-section { padding: 56px 20px; }
-
+    .section, .plans-section, .portfolio-section, .testimonials-section { padding: 56px 20px; }
     .contact-section { padding: 56px 20px; }
-
-    /* SERVIÇOS */
     .services-grid { grid-template-columns: 1fr; gap: 12px; }
     .service-card { padding: 28px 20px; }
-
-    /* PORTFOLIO */
-    .portfolio-grid {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 180px 180px 180px;
-    }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px 180px; }
     .port-item:nth-child(1) { grid-row: 1; grid-column: 1 / 3; }
-
-    /* TOURS */
-    .tours-row {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 160px 160px 160px;
-      height: auto;
-    }
+    .tours-row { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; height: auto; }
     .tour-item:nth-child(1) { grid-column: 1 / 3; }
     .tour-item:nth-child(5) { grid-column: 1 / 3; }
-
-    /* PLANOS */
     .plans-grid { grid-template-columns: 1fr; gap: 16px; }
     .plan-card { padding: 36px 20px; }
-
-    /* DIFERENCIAIS */
-    .diff-section {
-      grid-template-columns: 1fr;
-      padding: 56px 20px;
-      gap: 40px;
-    }
+    .diff-section { grid-template-columns: 1fr; padding: 56px 20px; gap: 40px; }
     .diff-visual { height: 280px; }
-
-    /* LOGOS */
     .logos-grid { grid-template-columns: repeat(3, 1fr); }
-
-    /* CONTATO */
     .contact-section { grid-template-columns: 1fr; gap: 36px; }
     .contact-info { padding-right: 0; }
     .form-row { grid-template-columns: 1fr; }
-
-    /* FOOTER */
-    footer {
-      flex-direction: column;
-      gap: 14px;
-      text-align: center;
-      padding: 28px 20px;
-    }
-
-    /* Divider */
+    footer { flex-direction: column; gap: 14px; text-align: center; padding: 28px 20px; }
     .divider { margin: 0 20px; }
   }
 
   @media (max-width: 480px) {
     nav { padding: 10px 16px; }
     .logo-img { height: 38px; }
-
     h1 { font-size: 2rem; }
     .hero-left { padding: 90px 16px 28px; }
-
-    .hero-right {
-      height: 75vw;
-      min-height: 240px;
-      max-height: 360px;
-    }
-
+    .hero-right { height: 75vw; min-height: 240px; max-height: 360px; }
     .stat-num { font-size: 1.1rem; }
     .stat-label { font-size: 0.5rem; }
     .hero-stat-bar { gap: 8px; padding: 12px 8px; }
-
-    .section,
-    .plans-section,
-    .portfolio-section,
-    .testimonials-section,
-    .contact-section { padding: 48px 16px; }
-
+    .section, .plans-section, .portfolio-section, .testimonials-section, .contact-section { padding: 48px 16px; }
     .diff-section { padding: 48px 16px; }
-
-    /* Logos — 2 colunas no mobile pequeno */
     .logos-grid { grid-template-columns: repeat(2, 1fr); }
-
-    /* Tours — 1 coluna no mobile pequeno */
-    .tours-row {
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(5, 200px);
-    }
-    .tour-item:nth-child(1),
-    .tour-item:nth-child(5) { grid-column: auto; }
-
-    /* Portfolio */
-    .portfolio-grid {
-      grid-template-columns: 1fr;
-      grid-template-rows: 200px 160px 160px 160px 160px;
-    }
+    .tours-row { grid-template-columns: 1fr; grid-template-rows: repeat(5, 200px); }
+    .tour-item:nth-child(1), .tour-item:nth-child(5) { grid-column: auto; }
+    .portfolio-grid { grid-template-columns: 1fr; grid-template-rows: 200px 160px 160px 160px 160px; }
     .port-item:nth-child(1) { grid-column: 1; }
-
-    /* Serviços */
     .services-grid { gap: 8px; }
     .service-card { padding: 24px 16px; }
-
-    /* Planos */
     .plan-card { padding: 28px 16px; }
-
     footer { padding: 24px 16px; }
     .divider { margin: 0 16px; }
   }
@@ -528,7 +287,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="https://www.fotolabestudio.net" target="_blank" rel="noopener" style="text-decoration:none;">
     <img src="logotipo.png" alt="FotoLab" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
@@ -540,37 +298,29 @@
     <li><a href="#planos">Planos</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
-  <!-- AJUSTE 1: Botão Nav CTA funcional -->
   <button class="nav-cta" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})">Contratar</button>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-left">
     <div class="hero-tag">Fotografia & Tour Virtual</div>
     <h1>Valorize a presença digital<br>do seu <em>espaço.</em></h1>
     <p class="hero-sub">Fotografia profissional de ambientes e Tour Virtual da sua empresa, que cabem no seu orçamento.</p>
     <div class="hero-btns">
-      <!-- AJUSTE 1: Botão "Ver Planos" com scroll funcional -->
       <button class="btn-primary" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})">Ver Planos</button>
       <button class="btn-outline" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">Ver Portfólio</button>
     </div>
   </div>
-
-  <!-- AJUSTE 4: Hero-right com grid 3 colunas conforme referência -->
   <div class="hero-right">
     <div class="hero-grid" id="heroGrid">
-      <!-- Foto 1: topo esquerda (pequena/quadrada) -->
       <div class="hero-img" data-label="Tour 360°">
         <img src="fotohero1.jpeg" alt="Tour Virtual 360°" loading="eager" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
         <div class="photo-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       </div>
-      <!-- Foto 2: baixo esquerda + meio (landscape larga) -->
       <div class="hero-img" data-label="Fotografia">
         <img src="fotohero3.jpeg" alt="Fotografia de Ambientes" loading="eager" decoding="async" onerror="this.style.display='none'">
         <div class="photo-placeholder"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
       </div>
-      <!-- Foto 3: coluna direita full height -->
       <div class="hero-img" data-label="Arquitetura">
         <img src="fotohero2.jpeg" alt="Fotografia de Arquitetura" loading="eager" decoding="async" onerror="this.style.display='none'">
         <div class="photo-placeholder"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
@@ -586,7 +336,6 @@
 
 <div class="divider"></div>
 
-<!-- SERVIÇOS -->
 <section class="section" id="servicos" style="background:#fafafa;">
   <div class="section-label reveal">O que oferecemos</div>
   <h2 class="reveal reveal-delay-1">Imagens profissionais que agregam<br>valor ao seu <em>negócio.</em></h2>
@@ -615,7 +364,6 @@
   </div>
 </section>
 
-<!-- PORTFÓLIO -->
 <section class="portfolio-section" id="portfolio">
   <div class="section-label reveal">Nosso trabalho</div>
   <h2 class="reveal reveal-delay-1">Valorize o <em>seu negócio</em></h2>
@@ -646,64 +394,45 @@
       <div class="port-item-overlay"><span class="port-label">Casa de Festas</span></div>
     </div>
   </div>
-
   <div class="tours-row reveal">
     <a class="tour-item" href="https://kuula.co/share/collection/79JFN?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" target="_blank" rel="noopener">
       <img src="tour5.png" loading="lazy" decoding="async" alt="São Luiz Star" onerror="this.style.display='none'">
       <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
-      <div class="tour-overlay">
-        <span class="tour-label">São Luiz Star</span>
-        <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
-      </div>
+      <div class="tour-overlay"><span class="tour-label">São Luiz Star</span><span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span></div>
     </a>
     <a class="tour-item" href="https://fotolabestudio.net/clientes/ferradurah/tour/" target="_blank" rel="noopener">
       <img src="tour1.png" loading="lazy" decoding="async" alt="Ferradura Resort" onerror="this.style.display='none'">
       <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
-      <div class="tour-overlay">
-        <span class="tour-label">Ferradura Resort</span>
-        <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
-      </div>
+      <div class="tour-overlay"><span class="tour-label">Ferradura Resort</span><span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span></div>
     </a>
     <a class="tour-item" href="https://kuula.co/share/collection/7DjsQ?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" target="_blank" rel="noopener">
       <img src="tour2.png" loading="lazy" decoding="async" alt="Espaço Paradisus" onerror="this.style.display='none'">
       <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
-      <div class="tour-overlay">
-        <span class="tour-label">Espaço Paradisus</span>
-        <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
-      </div>
+      <div class="tour-overlay"><span class="tour-label">Espaço Paradisus</span><span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span></div>
     </a>
     <a class="tour-item" href="http://fotolabestudio.net/360/amc/" target="_blank" rel="noopener">
       <img src="tour3.png" loading="lazy" decoding="async" alt="Américas Medical City" onerror="this.style.display='none'">
       <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
-      <div class="tour-overlay">
-        <span class="tour-label">Américas Medical City</span>
-        <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
-      </div>
+      <div class="tour-overlay"><span class="tour-label">Américas Medical City</span><span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span></div>
     </a>
     <a class="tour-item" href="https://kuula.co/share/collection/7q3wN?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" target="_blank" rel="noopener">
       <img src="tour4.png" loading="lazy" decoding="async" alt="SEND Decorado" onerror="this.style.display='none'">
       <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <span class="tour-badge">Tour 360°</span>
-      <div class="tour-overlay">
-        <span class="tour-label">Decorado</span>
-        <span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span>
-      </div>
+      <div class="tour-overlay"><span class="tour-label">Decorado</span><span class="tour-btn"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver Tour</span></div>
     </a>
   </div>
 </section>
 
-<!-- PLANOS -->
 <section class="plans-section" id="planos" style="background:#fafafa;">
   <div class="section-label reveal">Investimento</div>
   <h2 class="reveal reveal-delay-1">Planos que cabem<br>no seu <em>orçamento</em></h2>
   <p class="section-sub reveal reveal-delay-2">Planos completos com Fotografia Profissional e Tour Virtual. Escolha o que melhor se encaixa no seu negócio.</p>
   <div class="plans-grid">
-
-    <!-- ESSENCIAL -->
     <div class="plan-card reveal reveal-delay-1">
       <div class="plan-name">Plano Essencial</div>
       <div class="plan-price">
@@ -717,12 +446,8 @@
         <li>Edição profissional</li>
       </ul>
       <div class="plan-target">Ideal para Consultórios, Escritórios, Restaurantes, Pousadas e Imóveis até 3 quartos.</div>
-      <div class="plan-btn-wrap">
-        <a href="https://pay.sumup.com/b2c/Q9K3SCE4" target="_blank" rel="noopener" class="btn-outline" style="width:100%;display:block;text-align:center;text-decoration:none;">Contratar</a>
-      </div>
+      <div class="plan-btn-wrap"><a href="https://pay.sumup.com/b2c/Q9K3SCE4" target="_blank" rel="noopener" class="btn-outline" style="width:100%;display:block;text-align:center;text-decoration:none;">Contratar</a></div>
     </div>
-
-    <!-- PRO — AJUSTE 3: fundo rgb(160,161,159) -->
     <div class="plan-card featured reveal reveal-delay-2">
       <div class="plan-badge">Plano mais contratado</div>
       <div class="plan-name">Plano Profissional</div>
@@ -739,12 +464,8 @@
         <li>Atualização grátis até <strong>5 imagens</strong></li>
       </ul>
       <div class="plan-target">Ideal para Clínicas, Hospitais, Hotéis, Empresas, Casas de Festas e Imóveis Alto Padrão.</div>
-      <div class="plan-btn-wrap">
-        <a href="https://pay.sumup.com/b2c/QY2N64BD" target="_blank" rel="noopener" class="btn-primary" style="width:100%;display:block;text-align:center;text-decoration:none;">Contratar</a>
-      </div>
+      <div class="plan-btn-wrap"><a href="https://pay.sumup.com/b2c/QY2N64BD" target="_blank" rel="noopener" class="btn-primary" style="width:100%;display:block;text-align:center;text-decoration:none;">Contratar</a></div>
     </div>
-
-    <!-- PREMIUM -->
     <div class="plan-card reveal reveal-delay-3">
       <div class="plan-name">Plano Premium</div>
       <div class="plan-price">
@@ -761,63 +482,29 @@
         <li>Atualização grátis até <strong>10 imagens</strong></li>
       </ul>
       <div class="plan-target">Ideal para Construtoras, Grandes Clínicas, Hospitais, Resorts, Mansões e Grandes Espaços.</div>
-      <div class="plan-btn-wrap">
-        <a href="https://pay.sumup.com/b2c/QNNFMPIL" target="_blank" rel="noopener" class="btn-outline" style="width:100%;display:block;text-align:center;text-decoration:none;">Contratar</a>
-      </div>
+      <div class="plan-btn-wrap"><a href="https://pay.sumup.com/b2c/QNNFMPIL" target="_blank" rel="noopener" class="btn-outline" style="width:100%;display:block;text-align:center;text-decoration:none;">Contratar</a></div>
     </div>
-
   </div>
 </section>
 
-<!-- DIFERENCIAIS -->
 <section class="diff-section">
   <div>
     <div class="section-label reveal">Por que nos escolher</div>
     <h2 class="reveal reveal-delay-1">Nossa experiência valoriza<br>o seu <em>negócio.</em></h2>
     <p class="section-sub reveal reveal-delay-2" style="margin-bottom:48px">Com qualidade e comprometimento, cada projeto recebe atenção individualizada, do planejamento à entrega final.</p>
     <div class="diff-list">
-      <div class="diff-item reveal reveal-delay-1">
-        <div class="diff-num">01</div>
-        <div>
-          <div class="diff-title">Atendimento Personalizado</div>
-          <p class="diff-desc">Cada cliente tem necessidades únicas. Planejamos cada sessão do zero, entendendo o espaço e o que precisa ser destacado.</p>
-        </div>
-      </div>
-      <div class="diff-item reveal reveal-delay-2">
-        <div class="diff-num">02</div>
-        <div>
-          <div class="diff-title">Edição Profissional</div>
-          <p class="diff-desc">Pós-produção de alto nível em cada imagem: iluminação, cores e composição refinadas para máximo impacto visual.</p>
-        </div>
-      </div>
-      <div class="diff-item reveal reveal-delay-3">
-        <div class="diff-num">03</div>
-        <div>
-          <div class="diff-title">Pacotes Flexíveis</div>
-          <p class="diff-desc">Três opções de combo adaptadas ao tamanho e necessidade do seu negócio, com parcelamento em até 12×.</p>
-        </div>
-      </div>
-      <div class="diff-item reveal reveal-delay-3">
-        <div class="diff-num">04</div>
-        <div>
-          <div class="diff-title">Pagamento Facilitado</div>
-          <p class="diff-desc">Parcelamos em até 12× sem burocracia. Você investe no seu espaço sem comprometer o fluxo de caixa do seu negócio.</p>
-        </div>
-      </div>
+      <div class="diff-item reveal reveal-delay-1"><div class="diff-num">01</div><div><div class="diff-title">Atendimento Personalizado</div><p class="diff-desc">Cada cliente tem necessidades únicas. Planejamos cada sessão do zero, entendendo o espaço e o que precisa ser destacado.</p></div></div>
+      <div class="diff-item reveal reveal-delay-2"><div class="diff-num">02</div><div><div class="diff-title">Edição Profissional</div><p class="diff-desc">Pós-produção de alto nível em cada imagem: iluminação, cores e composição refinadas para máximo impacto visual.</p></div></div>
+      <div class="diff-item reveal reveal-delay-3"><div class="diff-num">03</div><div><div class="diff-title">Pacotes Flexíveis</div><p class="diff-desc">Três opções de combo adaptadas ao tamanho e necessidade do seu negócio, com parcelamento em até 12×.</p></div></div>
+      <div class="diff-item reveal reveal-delay-3"><div class="diff-num">04</div><div><div class="diff-title">Pagamento Facilitado</div><p class="diff-desc">Parcelamos em até 12× sem burocracia. Você investe no seu espaço sem comprometer o fluxo de caixa do seu negócio.</p></div></div>
     </div>
   </div>
   <div class="diff-visual reveal reveal-delay-2">
-    <div class="diff-img-main">
-<img src="exemplo9.jpeg" loading="lazy" decoding="async" alt="Nossa experiência" onerror="this.style.display='none'">
-    </div>
-    <div class="diff-badge">
-      <span class="diff-badge-num">100%</span>
-      <span class="diff-badge-text">Clientes Satisfeitos</span>
-    </div>
+    <div class="diff-img-main"><img src="exemplo9.jpeg" loading="lazy" decoding="async" alt="Nossa experiência" onerror="this.style.display='none'"></div>
+    <div class="diff-badge"><span class="diff-badge-num">100%</span><span class="diff-badge-text">Clientes Satisfeitos</span></div>
   </div>
 </section>
 
-<!-- CLIENTES -->
 <section class="testimonials-section" id="depoimentos">
   <div class="section-label reveal">Nossos Clientes</div>
   <h2 class="reveal reveal-delay-1">Empresas que já <em>atendemos</em></h2>
@@ -841,7 +528,6 @@
   </div>
 </section>
 
-<!-- CONTATO -->
 <section class="contact-section" id="contato" style="background:#fafafa;">
   <div class="contact-info">
     <div class="section-label reveal">Fale conosco</div>
@@ -857,16 +543,18 @@
       </div>
     </div>
   </div>
-  <form onsubmit="handleSubmit(event)" class="reveal reveal-delay-2">
+
+  <!-- FORMSPREE — envia direto pro email -->
+  <form action="https://formspree.io/f/xeevgkav" method="POST" class="reveal reveal-delay-2">
     <div class="form-row">
-      <div class="field"><label>Nome</label><input type="text" placeholder="Seu nome"></div>
-      <div class="field"><label>Empresa</label><input type="text" placeholder="Nome do negócio"></div>
+      <div class="field"><label>Nome</label><input type="text" name="nome" placeholder="Seu nome" required></div>
+      <div class="field"><label>Empresa</label><input type="text" name="empresa" placeholder="Nome do negócio"></div>
     </div>
     <div class="form-row">
-      <div class="field"><label>WhatsApp</label><input type="tel" placeholder="(00) 00000-0000"></div>
+      <div class="field"><label>WhatsApp</label><input type="tel" name="whatsapp" placeholder="(00) 00000-0000" required></div>
       <div class="field">
         <label>Plano de interesse</label>
-        <select>
+        <select name="plano">
           <option value="">Selecione...</option>
           <option>Plano Essencial</option>
           <option>Plano Pro</option>
@@ -877,13 +565,12 @@
         </select>
       </div>
     </div>
-    <div class="field"><label>Tipo de negócio</label><input type="text" placeholder="Ex: Clínica odontológica, hotel, escritório..."></div>
-    <div class="field"><label>Mensagem (opcional)</label><textarea placeholder="Conte um pouco mais sobre o seu espaço..."></textarea></div>
+    <div class="field"><label>Tipo de negócio</label><input type="text" name="negocio" placeholder="Ex: Clínica odontológica, hotel, escritório..."></div>
+    <div class="field"><label>Mensagem (opcional)</label><textarea name="mensagem" placeholder="Conte um pouco mais sobre o seu espaço..."></textarea></div>
     <button type="submit" class="btn-primary" style="width:100%; padding:18px">Enviar</button>
   </form>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">FotoLab Fotografia</div>
   <div class="footer-text">© 2026 · FotoLab · Fotografia de Ambientes & Tour Virtual · Rio de Janeiro · RJ · BR</div>
@@ -894,7 +581,6 @@
 </footer>
 
 <script>
-  // PARALLAX SUTIL NO HERO (só desktop)
   window.addEventListener('scroll', () => {
     if (window.innerWidth < 900) return;
     const grid = document.getElementById('heroGrid');
@@ -904,44 +590,6 @@
       grid.style.transform = 'translateY(' + (sy * 0.13) + 'px)';
     }
   }, { passive: true });
-
-  // FORM SUBMIT — envia via WhatsApp
-  function handleSubmit(e) {
-    e.preventDefault();
-    const f = e.target;
-    const nome    = f.querySelector('input[placeholder="Seu nome"]').value.trim();
-    const empresa = f.querySelector('input[placeholder="Nome do negócio"]').value.trim();
-    const whats   = f.querySelector('input[type="tel"]').value.trim();
-    const plano   = f.querySelector('select').value.trim();
-    const negocio = f.querySelector('input[placeholder*="hotel"]').value.trim();
-    const msg     = f.querySelector('textarea').value.trim();
-
-    const texto = [
-      '🏢 *Novo contato via site FotoLab*',
-      '',
-      `👤 *Nome:* ${nome || '—'}`,
-      `🏬 *Empresa:* ${empresa || '—'}`,
-      `📱 *WhatsApp:* ${whats || '—'}`,
-      `📦 *Plano:* ${plano || '—'}`,
-      `🔑 *Tipo de negócio:* ${negocio || '—'}`,
-      `💬 *Mensagem:* ${msg || '—'}`,
-    ].join('\n');
-
-    const numero = '5521987431010';
-    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(texto)}`, '_blank');
-
-    const btn = f.querySelector('button[type="submit"]');
-    const orig = btn.textContent;
-    btn.textContent = 'Abrindo WhatsApp... ✓';
-    btn.style.background = '#2d6a4f';
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = orig;
-      btn.style.background = '';
-      btn.disabled = false;
-      f.reset();
-    }, 3000);
-  }
 </script>
 </body>
 </html>
