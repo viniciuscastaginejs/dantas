@@ -60,16 +60,44 @@
   .btn-outline { background: transparent; color: var(--dark); padding: 16px 36px; border: 1px solid rgba(26,24,20,0.25); cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s; }
   .btn-outline:hover { border-color: var(--dark); }
 
+  /* ── HERO RIGHT — AJUSTE 4: Layout 3 colunas conforme referência ── */
+  /* Col esquerda: foto pequena (topo) | Col meio: foto landscape (baixo) | Col direita: foto alta (full height) */
   .hero-right { position: relative; overflow: hidden; min-height: 100vh; }
-  .hero-grid { position: absolute; inset: 0; display: grid; grid-template-columns: 1.1fr 0.9fr; grid-template-rows: 1fr 1fr; gap: 3px; }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    display: grid;
+    /* 3 colunas: esquerda menor, meio maior, direita média */
+    grid-template-columns: 0.85fr 1.15fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 3px;
+  }
+
+  /* Foto 1 — topo esquerda (quadrada/pequena) */
+  .hero-img:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+    background: linear-gradient(135deg, #d4cfc8, #c8c0b4);
+  }
+  /* Foto 2 — baixo esquerda + meio (landscape larga) */
+  .hero-img:nth-child(2) {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    background: linear-gradient(135deg, #cdd0d4, #bcc0c8);
+  }
+  /* Foto 3 — coluna direita full height */
+  .hero-img:nth-child(3) {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    background: linear-gradient(135deg, #d0cbc4, #c4bdb4);
+  }
+
   .hero-img { background: var(--surface2); overflow: hidden; position: relative; }
   .hero-img::after { content: attr(data-label); position: absolute; bottom: 12px; left: 12px; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.3); padding: 4px 8px; z-index: 2; }
-  .hero-img:nth-child(1) { background: linear-gradient(135deg, #d4cfc8, #c8c0b4); grid-column: 1; grid-row: 1 / 3; }
-  .hero-img:nth-child(2) { background: linear-gradient(135deg, #cdd0d4, #bcc0c8); grid-column: 2; grid-row: 1; }
-  .hero-img:nth-child(3) { background: linear-gradient(135deg, #d0cbc4, #c4bdb4); grid-column: 2; grid-row: 2; }
   .hero-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
   .photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; opacity: 0.18; }
   .photo-placeholder svg { width: 48px; height: 48px; fill: var(--red); }
+
   .hero-stat-bar { position: absolute; bottom: 0; left: 0; right: 0; display: flex; gap: 40px; justify-content: center; align-items: flex-end; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-top: 1px solid var(--border); padding: 20px 32px; z-index: 3; }
   .stat { text-align: center; display: flex; flex-direction: column; align-items: center; }
   .stat-num { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 300; color: var(--red); display: block; }
@@ -87,7 +115,7 @@
 
   /* ── SERVICES ── */
   .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .service-card { background: var(--card-bg); padding: 48px 36px; border: 1px solid rgba(26,24,20,0.09); transition: all 0.4s; position: relative; overflow: hidden; box-shadow: var(--shadow); border-color: rgba(26,24,20,0.09); }
+  .service-card { background: var(--card-bg); padding: 48px 36px; border: 1px solid rgba(26,24,20,0.09); transition: all 0.4s; position: relative; overflow: hidden; box-shadow: var(--shadow); }
   .service-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(232,50,26,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s; }
   .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: rgba(232,50,26,0.2); }
   .service-card:hover::before { opacity: 1; }
@@ -161,7 +189,6 @@
     font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase;
     padding: 4px 10px; backdrop-filter: blur(4px);
   }
-  /* placeholder quando não tem foto */
   .tour-placeholder {
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
@@ -172,7 +199,9 @@
   .plans-section { padding: 100px 48px; }
   .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 64px; align-items: stretch; }
   .plan-card { background: var(--card-bg); padding: 48px 36px; position: relative; border: 1px solid rgba(26,24,20,0.1); transition: all 0.4s; box-shadow: var(--shadow); display: flex; flex-direction: column; }
-  .plan-card.featured { background: #a0a09e; border-color: #a0a09e; }
+
+  /* AJUSTE 3: Cor do fundo do plano Profissional — R:160 G:161 B:159 = #a0a19f */
+  .plan-card.featured { background: rgb(160,161,159); border-color: rgb(160,161,159); }
   .plan-card.featured .plan-name,
   .plan-card.featured .plan-title { color: #1a1814; }
   .plan-card.featured .plan-price-main { color: var(--red); }
@@ -243,10 +272,6 @@
     box-shadow: var(--shadow);
   }
   .tcard:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-  .tcard:nth-child(1) { animation-delay: 0.05s; }
-  .tcard:nth-child(2) { animation-delay: 0.15s; }
-  .tcard:nth-child(3) { animation-delay: 0.25s; }
-  .tcard:nth-child(4) { animation-delay: 0.35s; }
   .tcard-quote { font-family: 'Fraunces', serif; font-size: 3.5rem; line-height: 0.8; color: var(--red); opacity: 0.2; margin-bottom: 12px; user-select: none; }
   .tcard-text { font-size: 0.91rem; line-height: 1.78; color: var(--muted); font-style: italic; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
   .tcard-author { display: flex; align-items: center; gap: 14px; }
@@ -256,7 +281,6 @@
   .tcard-name { font-size: 0.88rem; font-weight: 500; color: var(--dark); }
   .tcard-role { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); margin-top: 2px; text-transform: uppercase; }
   .tcard-stars { color: var(--red); font-size: 0.72rem; margin-top: 3px; letter-spacing: 2px; }
-
 
   /* ── LOGOS CLIENTES ── */
   .logos-grid {
@@ -273,7 +297,6 @@
     min-height: 100px;
     box-shadow: var(--shadow);
     transition: box-shadow 0.3s, transform 0.3s;
-    position: relative;
   }
   .logo-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
   .logo-item img { max-width: 140px; max-height: 60px; object-fit: contain; filter: grayscale(100%); opacity: 0.65; transition: filter 0.3s, opacity 0.3s; }
@@ -292,7 +315,7 @@
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .field { display: flex; flex-direction: column; gap: 8px; }
   label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
-  input, select, textarea { background: var(--card-bg); border: 1px solid rgba(26,24,20,0.15); color: var(--dark); padding: 14px 16px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 300; outline: none; transition: border-color 0.3s; }
+  input, select, textarea { background: var(--card-bg); border: 1px solid rgba(26,24,20,0.15); color: var(--dark); padding: 14px 16px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 300; outline: none; transition: border-color 0.3s; width: 100%; }
   input:focus, select:focus, textarea:focus { border-color: var(--red); }
   textarea { resize: none; height: 120px; }
   select option { background: var(--card-bg); }
@@ -305,26 +328,18 @@
   .footer-links a { color: var(--muted); font-size: 0.72rem; text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s; }
   .footer-links a:hover { color: var(--red); }
 
-  /* ── SCROLL REVEAL — CSS puro, sem JS ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(32px);
-    animation: revealUp 0.7s ease forwards;
-  }
+  /* ── ANIMATIONS ── */
+  .reveal { opacity: 0; transform: translateY(32px); animation: revealUp 0.7s ease forwards; }
   .reveal-delay-1 { animation-delay: 0.1s; }
   .reveal-delay-2 { animation-delay: 0.2s; }
   .reveal-delay-3 { animation-delay: 0.3s; }
-  @keyframes revealUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-  /* tcard com delay escalonado */
+  @keyframes revealUp { to { opacity: 1; transform: translateY(0); } }
   .tcard { opacity: 0; animation: revealUp 0.6s ease forwards; }
   .tcard:nth-child(1) { animation-delay: 0.05s; }
   .tcard:nth-child(2) { animation-delay: 0.15s; }
   .tcard:nth-child(3) { animation-delay: 0.25s; }
   .tcard:nth-child(4) { animation-delay: 0.35s; }
 
-  /* ── HERO ENTRY ── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   .hero-left > * { animation: fadeUp 0.8s ease forwards; opacity: 0; }
   .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
@@ -332,69 +347,161 @@
   .hero-left > *:nth-child(3) { animation-delay: 0.4s; }
   .hero-left > *:nth-child(4) { animation-delay: 0.55s; }
 
-  /* ── RESPONSIVE ── */
+  /* ══════════════════════════════════════════
+     AJUSTE 2: MOBILE — RESPONSIVIDADE CORRIGIDA
+  ══════════════════════════════════════════ */
   @media (max-width: 900px) {
-    nav { padding: 14px 24px; }
+    /* NAV */
+    nav { padding: 12px 20px; }
     nav ul { display: none; }
-    .logo-img { height: 48px; }
+    .logo-img { height: 44px; }
 
-    /* HERO */
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 90px 20px 32px; }
-    .hero-right { height: 65vw; min-height: 260px; max-height: 400px; }
-    .hero-grid { grid-template-columns: 1fr 1fr !important; grid-template-rows: 1fr 1fr !important; }
-    .hero-img:nth-child(1) { grid-column: 1 !important; grid-row: 1 / 3 !important; }
-    .hero-img:nth-child(2) { grid-column: 2 !important; grid-row: 1 !important; }
-    .hero-img:nth-child(3) { grid-column: 2 !important; grid-row: 2 !important; }
-    .hero-stat-bar { gap: 16px; padding: 14px 12px; }
+    /* HERO — empilha verticalmente */
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .hero-left {
+      padding: 100px 20px 36px;
+      order: 1;
+    }
+    .hero-right {
+      order: 2;
+      position: relative;
+      height: 70vw;
+      min-height: 280px;
+      max-height: 420px;
+    }
+
+    /* Grid hero mobile: 2 col x 2 row simples */
+    .hero-grid {
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-rows: 1fr 1fr !important;
+    }
+    .hero-img:nth-child(1) { grid-column: 1 !important; grid-row: 1 !important; }
+    .hero-img:nth-child(2) { grid-column: 1 !important; grid-row: 2 !important; }
+    .hero-img:nth-child(3) { grid-column: 2 !important; grid-row: 1 / 3 !important; }
+
+    .hero-stat-bar {
+      position: relative;
+      gap: 12px;
+      padding: 16px 12px;
+    }
     .stat-num { font-size: 1.3rem; }
     .stat-label { font-size: 0.55rem; }
 
-    /* SECTIONS */
-    .section, .plans-section, .portfolio-section, .testimonials-section, .contact-section { padding: 56px 20px; }
+    /* SEÇÕES genéricas */
+    .section,
+    .plans-section,
+    .portfolio-section,
+    .testimonials-section { padding: 56px 20px; }
+
+    .contact-section { padding: 56px 20px; }
 
     /* SERVIÇOS */
     .services-grid { grid-template-columns: 1fr; gap: 12px; }
-    .service-card { padding: 32px 24px; }
+    .service-card { padding: 28px 20px; }
 
     /* PORTFOLIO */
-    .portfolio-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px 180px; }
-    .port-item:nth-child(1) { grid-row: auto; grid-column: 1 / 3; }
+    .portfolio-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 180px 180px 180px;
+    }
+    .port-item:nth-child(1) { grid-row: 1; grid-column: 1 / 3; }
 
     /* TOURS */
-    .tours-row { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; }
+    .tours-row {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 160px 160px 160px;
+      height: auto;
+    }
     .tour-item:nth-child(1) { grid-column: 1 / 3; }
     .tour-item:nth-child(5) { grid-column: 1 / 3; }
 
     /* PLANOS */
-    .plans-grid { grid-template-columns: 1fr; gap: 12px; }
-    .plan-card { padding: 36px 24px; }
+    .plans-grid { grid-template-columns: 1fr; gap: 16px; }
+    .plan-card { padding: 36px 20px; }
 
     /* DIFERENCIAIS */
-    .diff-section { grid-template-columns: 1fr; padding: 56px 20px; gap: 32px; }
-    .diff-visual { height: 300px; }
+    .diff-section {
+      grid-template-columns: 1fr;
+      padding: 56px 20px;
+      gap: 40px;
+    }
+    .diff-visual { height: 280px; }
 
     /* LOGOS */
     .logos-grid { grid-template-columns: repeat(3, 1fr); }
 
     /* CONTATO */
-    .contact-section { grid-template-columns: 1fr; gap: 32px; }
+    .contact-section { grid-template-columns: 1fr; gap: 36px; }
     .contact-info { padding-right: 0; }
     .form-row { grid-template-columns: 1fr; }
 
     /* FOOTER */
-    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 20px; }
+    footer {
+      flex-direction: column;
+      gap: 14px;
+      text-align: center;
+      padding: 28px 20px;
+    }
+
+    /* Divider */
+    .divider { margin: 0 20px; }
   }
 
   @media (max-width: 480px) {
+    nav { padding: 10px 16px; }
+    .logo-img { height: 38px; }
+
+    h1 { font-size: 2rem; }
+    .hero-left { padding: 90px 16px 28px; }
+
+    .hero-right {
+      height: 75vw;
+      min-height: 240px;
+      max-height: 360px;
+    }
+
     .stat-num { font-size: 1.1rem; }
     .stat-label { font-size: 0.5rem; }
     .hero-stat-bar { gap: 8px; padding: 12px 8px; }
+
+    .section,
+    .plans-section,
+    .portfolio-section,
+    .testimonials-section,
+    .contact-section { padding: 48px 16px; }
+
+    .diff-section { padding: 48px 16px; }
+
+    /* Logos — 2 colunas no mobile pequeno */
     .logos-grid { grid-template-columns: repeat(2, 1fr); }
-    .tours-row { grid-template-columns: 1fr; grid-template-rows: repeat(5, 200px); }
+
+    /* Tours — 1 coluna no mobile pequeno */
+    .tours-row {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(5, 200px);
+    }
     .tour-item:nth-child(1),
     .tour-item:nth-child(5) { grid-column: auto; }
-    .section, .plans-section, .portfolio-section, .testimonials-section, .contact-section { padding: 48px 16px; }
+
+    /* Portfolio */
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: 200px 160px 160px 160px 160px;
+    }
+    .port-item:nth-child(1) { grid-column: 1; }
+
+    /* Serviços */
+    .services-grid { gap: 8px; }
+    .service-card { padding: 24px 16px; }
+
+    /* Planos */
+    .plan-card { padding: 28px 16px; }
+
+    footer { padding: 24px 16px; }
+    .divider { margin: 0 16px; }
   }
 </style>
 </head>
@@ -412,6 +519,7 @@
     <li><a href="#planos">Planos</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
+  <!-- AJUSTE 1: Botão Nav CTA funcional -->
   <button class="nav-cta" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})">Contratar</button>
 </nav>
 
@@ -422,23 +530,29 @@
     <h1>Valorize a presença digital<br>do seu <em>espaço.</em></h1>
     <p class="hero-sub">Fotografia profissional de ambientes e Tour Virtual da sua empresa, que cabem no seu orçamento.</p>
     <div class="hero-btns">
+      <!-- AJUSTE 1: Botão "Ver Planos" com scroll funcional -->
       <button class="btn-primary" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})">Ver Planos</button>
       <button class="btn-outline" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">Ver Portfólio</button>
     </div>
   </div>
+
+  <!-- AJUSTE 4: Hero-right com grid 3 colunas conforme referência -->
   <div class="hero-right">
     <div class="hero-grid" id="heroGrid">
-      <div class="hero-img" data-label="Arquitetura">
-        <img src="fotohero1.jpeg" alt="Fotografia de Arquitetura" loading="eager" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
-        <div class="photo-placeholder"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      </div>
-      <div class="hero-img" data-label="Interior">
-        <img src="fotohero2.jpeg" alt="Fotografia de Interior" loading="eager" decoding="async" onerror="this.style.display='none'">
-        <div class="photo-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-      </div>
-      <div class="hero-img" data-label="Tour Virtual">
-        <img src="fotohero3.jpeg" alt="Tour Virtual" loading="eager" decoding="async" onerror="this.style.display='none'">
+      <!-- Foto 1: topo esquerda (pequena/quadrada) -->
+      <div class="hero-img" data-label="Tour 360°">
+        <img src="fotohero1.jpeg" alt="Tour Virtual 360°" loading="eager" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
         <div class="photo-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+      </div>
+      <!-- Foto 2: baixo esquerda + meio (landscape larga) -->
+      <div class="hero-img" data-label="Fotografia">
+        <img src="fotohero2.jpeg" alt="Fotografia de Ambientes" loading="eager" decoding="async" onerror="this.style.display='none'">
+        <div class="photo-placeholder"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+      </div>
+      <!-- Foto 3: coluna direita full height -->
+      <div class="hero-img" data-label="Arquitetura">
+        <img src="fotohero3.jpeg" alt="Fotografia de Arquitetura" loading="eager" decoding="async" onerror="this.style.display='none'">
+        <div class="photo-placeholder"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
       </div>
     </div>
     <div class="hero-stat-bar">
@@ -454,64 +568,29 @@
 <!-- SERVIÇOS -->
 <section class="section" id="servicos" style="background:#fafafa;">
   <div class="section-label reveal">O que oferecemos</div>
-  <h2 class="reveal reveal-delay-1">
-    Imagens profissionais que agregam<br>valor ao seu <em>negócio.</em>
-  </h2>
-  <p class="section-sub reveal reveal-delay-2">
-    Criamos uma experiência virtual do seu espaço que pode ser explorada diretamente no Google e no seu site.
-  </p>
-
+  <h2 class="reveal reveal-delay-1">Imagens profissionais que agregam<br>valor ao seu <em>negócio.</em></h2>
+  <p class="section-sub reveal reveal-delay-2">Criamos uma experiência virtual do seu espaço que pode ser explorada diretamente no Google e no seu site.</p>
   <div class="services-grid">
     <div class="service-card reveal reveal-delay-1">
       <div class="service-num">01</div>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
-          <circle cx="12" cy="13" r="4"/>
-        </svg>
-      </div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
       <div class="service-title">Fotografia Profissional de Ambientes</div>
-      <p class="service-desc">
-        Imagens de alto impacto, que dialogam com o projeto do seu espaço, mostrando o clima em cada ambiente e destacando detalhes.
-      </p>
-      <a class="service-link" href="#" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'}); return false;">
-        Ver planos →
-      </a>
+      <p class="service-desc">Imagens de alto impacto, que dialogam com o projeto do seu espaço, mostrando o clima em cada ambiente e destacando detalhes.</p>
+      <a class="service-link" href="#planos" onclick="event.preventDefault();document.getElementById('planos').scrollIntoView({behavior:'smooth'})">Ver planos →</a>
     </div>
-
     <div class="service-card reveal reveal-delay-2">
       <div class="service-num">02</div>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/>
-        </svg>
-      </div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       <div class="service-title">Tour Virtual 360°</div>
-      <p class="service-desc">
-        Experiência imersiva que oferece a seus clientes a possibilidade de conhecer melhor e explorar seu espaço antes mesmo da visita presencial.
-      </p>
-      <a class="service-link" href="#" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'}); return false;">
-        Ver planos →
-      </a>
+      <p class="service-desc">Experiência imersiva que oferece a seus clientes a possibilidade de conhecer melhor e explorar seu espaço antes mesmo da visita presencial.</p>
+      <a class="service-link" href="#planos" onclick="event.preventDefault();document.getElementById('planos').scrollIntoView({behavior:'smooth'})">Ver planos →</a>
     </div>
-
     <div class="service-card reveal reveal-delay-3">
       <div class="service-num">03</div>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-          <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-        </svg>
-      </div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
       <div class="service-title">Presença no Google Maps</div>
-      <p class="service-desc">
-        Hoje a primeira decisão do cliente acontece antes mesmo de sair de casa. A integração do tour virtual diretamente no Google Maps aumenta a visibilidade e a confiança de quem pesquisa seu negócio.
-      </p>
-      <a class="service-link" href="#" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'}); return false;">
-        Ver planos →
-      </a>
+      <p class="service-desc">Hoje a primeira decisão do cliente acontece antes mesmo de sair de casa. A integração do tour virtual diretamente no Google Maps aumenta a visibilidade e a confiança de quem pesquisa seu negócio.</p>
+      <a class="service-link" href="#planos" onclick="event.preventDefault();document.getElementById('planos').scrollIntoView({behavior:'smooth'})">Ver planos →</a>
     </div>
   </div>
 </section>
@@ -520,8 +599,6 @@
 <section class="portfolio-section" id="portfolio">
   <div class="section-label reveal">Nosso trabalho</div>
   <h2 class="reveal reveal-delay-1">Valorize o <em>seu negócio</em></h2>
-
-  <!-- Fotos -->
   <div class="portfolio-grid">
     <div class="port-item reveal reveal-delay-1">
       <img src="exemplo4.jpeg" loading="lazy" decoding="async" alt="Imóvel Alto Padrão" onerror="this.style.display='none'">
@@ -550,9 +627,7 @@
     </div>
   </div>
 
-  <!-- Tours Virtuais — São Luiz MAIOR na esquerda, menores na direita -->
   <div class="tours-row reveal">
-    <!-- Maior na esquerda -->
     <a class="tour-item" href="https://kuula.co/share/collection/79JFN?logo=-1&info=0&fs=1&vr=1&sd=1&autorotate=0.08&thumbs=3&inst=pt" target="_blank" rel="noopener">
       <img src="tour5.png" loading="lazy" decoding="async" alt="São Luiz Star" onerror="this.style.display='none'">
       <div class="tour-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
@@ -616,9 +691,9 @@
         <div class="plan-price-period">ou R$3.300 à vista</div>
       </div>
       <ul class="plan-features">
-        <li><strong>10 fotos</strong>  profissionais</li>
-        <li>Tour Virtual com  <strong>10 ambientes</strong></li>
-        <li><strong>12 meses</strong>  de hospedagem <strong>do Tour</strong></li>
+        <li><strong>10 fotos</strong> profissionais</li>
+        <li>Tour Virtual com <strong>10 ambientes</strong></li>
+        <li><strong>12 meses</strong> de hospedagem <strong>do Tour</strong></li>
         <li>Edição profissional</li>
       </ul>
       <div class="plan-target">Ideal para Consultórios, Escritórios, Restaurantes, Pousadas e Imóveis até 3 quartos.</div>
@@ -627,7 +702,7 @@
       </div>
     </div>
 
-    <!-- PRO -->
+    <!-- PRO — AJUSTE 3: fundo rgb(160,161,159) -->
     <div class="plan-card featured reveal reveal-delay-2">
       <div class="plan-badge">Plano mais contratado</div>
       <div class="plan-name">Plano Profissional</div>
@@ -636,10 +711,10 @@
         <div class="plan-price-period">ou R$6.900 à vista</div>
       </div>
       <ul class="plan-features">
-        <li><strong>30 fotos</strong>  profissionais</li>
-        <li>Tour Virtual com  <strong>30 ambientes</strong></li>
-        <li><strong>18 meses</strong>  de hospedagem <strong>do Tour</strong></li>
-        <li>Presença no  <strong>Google Street View</strong></li>
+        <li><strong>30 fotos</strong> profissionais</li>
+        <li>Tour Virtual com <strong>30 ambientes</strong></li>
+        <li><strong>18 meses</strong> de hospedagem <strong>do Tour</strong></li>
+        <li>Presença no <strong>Google Street View</strong></li>
         <li>Edição profissional</li>
         <li>Atualização grátis até <strong>5 imagens</strong></li>
       </ul>
@@ -657,12 +732,12 @@
         <div class="plan-price-period">ou R$10.680 à vista</div>
       </div>
       <ul class="plan-features">
-        <li><strong>50 fotos</strong>  profissionais</li>
-        <li><strong>Imagens aéreas</strong>  inclusas</li>
+        <li><strong>50 fotos</strong> profissionais</li>
+        <li><strong>Imagens aéreas</strong> inclusas</li>
         <li>Edição profissional</li>
-        <li>Tour Virtual com  <strong>50 ambientes</strong></li>
-        <li><strong>24 meses</strong>  de hospedagem <strong>do Tour</strong></li>
-        <li>Presença no  <strong>Google Street View</strong></li>
+        <li>Tour Virtual com <strong>50 ambientes</strong></li>
+        <li><strong>24 meses</strong> de hospedagem <strong>do Tour</strong></li>
+        <li>Presença no <strong>Google Street View</strong></li>
         <li>Atualização grátis até <strong>10 imagens</strong></li>
       </ul>
       <div class="plan-target">Ideal para Construtoras, Grandes Clínicas, Hospitais, Resorts, Mansões e Grandes Espaços.</div>
@@ -714,7 +789,7 @@
   <div class="diff-visual reveal reveal-delay-2">
     <div class="diff-img-main">
       <img src="exemplo9.jpeg" loading="lazy" decoding="async" alt="Nossa experiência" onerror="this.style.display='none'">
-      <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      <svg viewBox="0 0 24 24" style="opacity:0.15;width:48px;height:48px;fill:var(--red)"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
     </div>
     <div class="diff-badge">
       <span class="diff-badge-num">100%</span>
@@ -723,13 +798,12 @@
   </div>
 </section>
 
-<!-- DEPOIMENTOS -->
+<!-- CLIENTES -->
 <section class="testimonials-section" id="depoimentos">
   <div class="section-label reveal">Nossos Clientes</div>
   <h2 class="reveal reveal-delay-1">Empresas que já <em>atendemos</em></h2>
   <p class="section-sub reveal reveal-delay-2">Empresas que confiaram no nosso trabalho e viram a diferença na presença visual do seu espaço.</p>
-
-    <div class="logos-grid">
+  <div class="logos-grid">
     <div class="logo-item"><img src="cliente1.png" alt="Cliente 1" loading="lazy" decoding="async" onerror="this.style.opacity='0'"></div>
     <div class="logo-item"><img src="cliente2.png" alt="Cliente 2" loading="lazy" decoding="async" onerror="this.style.opacity='0'"></div>
     <div class="logo-item"><img src="cliente3.png" alt="Cliente 3" loading="lazy" decoding="async" onerror="this.style.opacity='0'"></div>
@@ -801,8 +875,9 @@
 </footer>
 
 <script>
-  // PARALLAX SUTIL NO HERO
+  // PARALLAX SUTIL NO HERO (só desktop)
   window.addEventListener('scroll', () => {
+    if (window.innerWidth < 900) return;
     const grid = document.getElementById('heroGrid');
     if (!grid) return;
     const sy = window.scrollY;
