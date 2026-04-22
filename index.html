@@ -46,7 +46,8 @@
   .nav-cta:hover { background: var(--red); color: #fff; }
 
   .hero {
-    min-height: 820px;
+    margin-top: 92px;
+    min-height: 728px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     position: relative;
@@ -209,15 +210,11 @@
     z-index: 1;
   }
 
-  /* SOMENTE a primeira imagem sem corte */
-  .hero-img:nth-child(1) img {
-    object-fit: contain;
-    object-position: center center;
-    width: 100%;
-    height: 100%;
-    background: #d4cfc8;
-    transform: scale(0.96);
-  }
+/* Primeira imagem alinhada ao topo para destacar o ambiente */
+.hero-img:nth-child(1) img {
+  object-fit: cover;
+  object-position: center top;
+}
 
   /* segunda imagem continua preenchendo normal */
   .hero-img:nth-child(2) img {
@@ -519,7 +516,7 @@
   <div class="hero-right">
     <div class="hero-grid" id="heroGrid">
       <div class="hero-img" data-label="Tour 360°">
-        <img src="fotohero1.jpeg" alt="Tour Virtual 360°" loading="eager" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
+        <img src="fotohero1.jpeg" alt="Tour Virtual 360°" loading="eager" fetchpriority="high" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="photo-placeholder"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
       </div>
       <div class="hero-img" data-label="Fotografia">
