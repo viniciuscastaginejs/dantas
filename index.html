@@ -6,6 +6,14 @@
 <title>FotoLab | Fotografia & Tour Virtual</title>
 <link rel="icon" type="image/png" href="logotipo.png">
 <link rel="apple-touch-icon" href="logotipo.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LKNBD82Q97"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LKNBD82Q97');
+</script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
 <style>
@@ -199,7 +207,6 @@
     z-index: 2;
   }
 
-  /* padrão: mantém preenchido */
   .hero-img img {
     position: absolute;
     inset: 0;
@@ -210,19 +217,16 @@
     z-index: 1;
   }
 
-/* Primeira imagem alinhada ao topo para destacar o ambiente */
-.hero-img:nth-child(1) img {
-  object-fit: cover;
-  object-position: center top;
-}
+  .hero-img:nth-child(1) img {
+    object-fit: cover;
+    object-position: center top;
+  }
 
-  /* segunda imagem continua preenchendo normal */
   .hero-img:nth-child(2) img {
     object-fit: cover;
     object-position: center center;
   }
 
-  /* terceira imagem continua preenchendo normal */
   .hero-img:nth-child(3) img {
     object-fit: cover;
     object-position: center center;
